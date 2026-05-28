@@ -1,0 +1,68 @@
+---
+const WA_LINK = 'https://wa.me/NUMERO_PLACEHOLDER?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20VantAr';
+const NAV_LINKS = [
+  { href: '#como-funciona', label: 'Cómo funciona' },
+  { href: '#beneficios',    label: 'Beneficios' },
+  { href: '#resultados',    label: 'Resultados' },
+  { href: '#contacto',      label: 'Contacto' },
+];
+---
+<nav id="vs-navbar" style="position:fixed;top:0;left:0;right:0;z-index:50;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;transition:background 0.35s ease,box-shadow 0.35s ease;background:transparent;">
+
+  <!-- Logo + brand -->
+  <a href="#" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:36px;height:36px;flex-shrink:0;">
+      <defs>
+        <linearGradient id="vGradNav" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#FFFFFF"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0.75)"/>
+        </linearGradient>
+      </defs>
+      <path d="M8 12 L40 68 L72 12 L60 12 L40 50 L20 12 Z" fill="url(#vGradNav)"/>
+      <line x1="14" y1="22" x2="22" y2="22" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="22" cy="22" r="2" fill="#00B4CC"/>
+      <line x1="22" y1="22" x2="22" y2="17" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="66" y1="22" x2="58" y2="22" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="58" cy="22" r="2" fill="#00B4CC"/>
+      <line x1="58" y1="22" x2="58" y2="17" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="40" y1="56" x2="40" y2="64" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="36" y1="64" x2="44" y2="64" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="36" cy="64" r="2" fill="#00B4CC"/>
+      <circle cx="44" cy="64" r="2" fill="#00B4CC"/>
+    </svg>
+    <span style="font-family:var(--font-outfit);font-weight:700;font-size:1.25rem;color:#FFFFFF;letter-spacing:-0.01em;">
+      Vant<span style="color:#00B4CC;">Ar</span>
+    </span>
+  </a>
+
+  <div style="display:flex;align-items:center;gap:32px;">
+    <!-- Nav links (hidden on mobile via CSS) -->
+    <div class="nav-links">
+      {NAV_LINKS.map(l => (
+        <a href={l.href} class="nav-anchor">{l.label}</a>
+      ))}
+    </div>
+    <!-- CTA -->
+    <a href={WA_LINK} target="_blank" rel="noopener noreferrer" class="btn-teal-nav">
+      Hablar con VantAr
+    </a>
+  </div>
+</nav>
+
+<script>
+  const nav = document.getElementById('vs-navbar');
+  window.addEventListener('scroll', () => {
+    if (!nav) return;
+    if (window.scrollY > 32) {
+      nav.style.background = 'rgba(3,10,21,0.92)';
+      nav.style.backdropFilter = 'blur(14px)';
+      nav.style.webkitBackdropFilter = 'blur(14px)';
+      nav.style.boxShadow = '0 1px 0 rgba(0,180,204,0.1)';
+    } else {
+      nav.style.background = 'transparent';
+      nav.style.backdropFilter = '';
+      nav.style.webkitBackdropFilter = '';
+      nav.style.boxShadow = '';
+    }
+  }, { passive: true });
+</script>

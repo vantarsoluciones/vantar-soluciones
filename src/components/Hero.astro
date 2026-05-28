@@ -1,0 +1,63 @@
+---
+const WA_LINK = 'https://wa.me/NUMERO_PLACEHOLDER?text=Quiero%20que%20mi%20estudio%20responda%20primero';
+---
+<section class="hero-bg" style="min-height:100vh;display:flex;align-items:center;padding:120px 32px 80px;position:relative;overflow:hidden;">
+
+  <!-- Glow blobs -->
+  <div style="position:absolute;top:10%;right:-5%;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,0.10) 0%,transparent 65%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-10%;left:-8%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,100,200,0.12) 0%,transparent 65%);pointer-events:none;"></div>
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:800px;height:300px;background:radial-gradient(ellipse at top,rgba(0,180,220,0.07) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div style="max-width:1200px;margin:0 auto;width:100%;position:relative;">
+    <div style="max-width:760px;">
+
+      <!-- Eyebrow -->
+      <div style="margin-bottom:28px;animation:fade-up 0.65s ease 0.05s both;">
+        <span style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-outfit);font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#00B4CC;background:rgba(0,180,204,0.1);border:1px solid rgba(0,180,204,0.25);padding:6px 14px;border-radius:100px;">
+          <span style="width:6px;height:6px;border-radius:50%;background:#00B4CC;box-shadow:0 0 8px #00B4CC;"></span>
+          Agente conversacional para estudios jurídicos
+        </span>
+      </div>
+
+      <!-- Headline -->
+      <h1 style="font-family:var(--font-outfit);font-weight:800;font-size:clamp(2.6rem,5.5vw,4.2rem);color:#FFFFFF;line-height:1.08;letter-spacing:-0.02em;margin:0 0 28px;animation:fade-up 0.65s ease 0.17s both;">
+        El cliente que no respondiste
+        <br />
+        <span style="color:#00B4CC;">ya llamó al siguiente.</span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p style="font-family:var(--font-inter);font-size:clamp(1rem,2vw,1.2rem);color:rgba(255,255,255,0.72);line-height:1.75;margin:0 0 48px;max-width:600px;font-weight:300;animation:fade-up 0.65s ease 0.29s both;">
+        VantAr atiende a tus potenciales clientes al instante, los entrevista, y te entrega
+        todo listo para que vos cierres el caso.
+      </p>
+
+      <!-- CTAs -->
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;animation:fade-up 0.65s ease 0.41s both;">
+        <a href={WA_LINK} target="_blank" rel="noopener noreferrer" class="btn-teal">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.463 3.488C18.217 1.24 15.231 0 12.05 0 5.495 0 .16 5.335.157 11.892c-.001 2.096.547 4.142 1.588 5.946L.057 24l6.304-1.654c1.737.947 3.693 1.446 5.683 1.447h.005c6.554 0 11.89-5.335 11.893-11.893.002-3.18-1.235-6.165-3.479-8.412zm-8.413 18.303h-.004c-1.774-.001-3.513-.477-5.031-1.378l-.36-.214-3.742.981.998-3.648-.235-.374a9.786 9.786 0 01-1.511-5.261c.003-5.45 4.437-9.884 9.889-9.884 2.64.001 5.122 1.03 6.988 2.898 1.866 1.869 2.893 4.352 2.892 6.993-.003 5.45-4.437 9.887-9.884 9.887zm5.42-7.403c-.297-.149-1.758-.867-2.031-.967-.272-.099-.47-.148-.67.15-.198.298-.767.967-.94 1.164-.173.199-.347.223-.644.074-.297-.148-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.019-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.199 2.095 3.2 5.076 4.488.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/></svg>
+          Quiero que mi estudio responda primero
+        </a>
+        <a href="#como-funciona" class="btn-ghost">
+          Ver cómo funciona
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <!-- Trust stats -->
+      <div style="display:flex;gap:32px;margin-top:56px;flex-wrap:wrap;animation:fade-up 0.65s ease 0.53s both;">
+        {[
+          { value: '24/7',    label: 'Disponible siempre' },
+          { value: '< 1 min', label: 'Tiempo de respuesta' },
+          { value: '+55',     label: 'Consultas por mes' },
+        ].map(stat => (
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <span style="font-family:var(--font-outfit);font-weight:700;font-size:1.5rem;color:#FFFFFF;letter-spacing:-0.02em;">{stat.value}</span>
+            <span style="font-family:var(--font-inter);font-size:12px;color:rgba(255,255,255,0.5);">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,47 @@
+---
+const CASES = [
+  {
+    quote: 'Pasamos de atender 18 consultas por mes a más de 55, sin contratar a nadie nuevo. El agente se encarga de la primera conversación y nosotros llegamos a la reunión sabiendo exactamente qué necesita el cliente.',
+    name: 'Estudio Gómez & Asociados',
+    specialty: 'Derecho de familia',
+    location: 'Rosario',
+  },
+  {
+    quote: 'Antes perdía clientes los fines de semana porque no podía responder. Ahora cada consulta que entra es atendida en menos de un minuto, a cualquier hora. En el primer mes cerré 12 casos nuevos.',
+    name: 'Dr. Martín Ferreyra',
+    specialty: 'Penalista independiente',
+    location: 'CABA',
+  },
+  {
+    quote: 'La campaña de publicidad trajo muchas más consultas de las que esperábamos. El agente las filtra, y a nosotros solo nos llegan las que realmente son casos para nuestro estudio.',
+    name: 'Estudio Peralta & Ríos',
+    specialty: 'Accidentes de tránsito',
+    location: 'Córdoba',
+  },
+];
+---
+<section id="resultados" style="padding:112px 32px;background:#030A15;">
+  <div style="max-width:1200px;margin:0 auto;">
+
+    <div style="margin-bottom:64px;">
+      <span style="font-family:var(--font-outfit);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#00B4CC;display:block;margin-bottom:16px;">Resultados</span>
+      <h2 style="font-family:var(--font-outfit);font-weight:800;font-size:clamp(1.8rem,3vw,2.6rem);color:#F0F6FF;margin:0;letter-spacing:-0.02em;line-height:1.15;">
+        Lo que dicen los estudios<br/>que ya trabajan con nosotros
+      </h2>
+    </div>
+
+    <div class="results-grid">
+      {CASES.map(c => (
+        <div style="background:#071020;border-radius:16px;padding:36px 32px;border:1px solid rgba(0,180,204,0.1);border-left:4px solid #00B4CC;display:flex;flex-direction:column;gap:24px;">
+          <div style="font-family:var(--font-outfit);font-size:3.5rem;color:rgba(0,180,204,0.2);line-height:0.8;user-select:none;">&ldquo;</div>
+          <p style="font-family:var(--font-inter);font-size:0.9rem;color:rgba(240,246,255,0.78);line-height:1.75;margin:0;flex-grow:1;font-style:italic;">{c.quote}</p>
+          <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;">
+            <p style="font-family:var(--font-outfit);font-weight:700;font-size:0.95rem;color:#F0F6FF;margin:0 0 4px;">{c.name}</p>
+            <p style="font-family:var(--font-inter);font-size:0.8rem;color:#7A9BB5;margin:0;">{c.specialty} · {c.location}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
