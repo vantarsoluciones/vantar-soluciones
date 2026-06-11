@@ -1,0 +1,33 @@
+---
+const FEATURES = [
+  { n: '01', title: 'Atención inmediata, 24/7/365',        desc: 'Responde al instante, a cualquier hora. Tu cliente nunca queda en visto.' },
+  { n: '02', title: 'Entrevista legal inteligente',        desc: 'Conversa con naturalidad, deja que la persona cuente su situación y hace solo las preguntas necesarias para perfilar el caso. No es un formulario.' },
+  { n: '03', title: 'Entiende texto, audios e imágenes',   desc: 'Transcribe mensajes de voz y recibe fotos — un documento, una notificación, una lesión — y las suma al caso. Nada se pierde.' },
+  { n: '04', title: 'Agenda los turnos solo',              desc: 'Consulta tu disponibilidad real, ofrece horarios concretos y reserva directo en tu Google Calendar.' },
+  { n: '05', title: 'Recordatorios automáticos',           desc: 'Le recuerda al cliente su turno por WhatsApp. Menos ausentes, menos agenda desperdiciada.' },
+  { n: '06', title: 'Recupera conversaciones frías',       desc: 'Si alguien consultó y se quedó callado, lo vuelve a contactar con naturalidad. Leads que antes morían, ahora vuelven.' },
+  { n: '07', title: 'Te entrega el caso listo y priorizado', desc: 'Informe automático con resumen, datos clave y urgencia (Alta / Media / Baja), a tu mail y WhatsApp. Llegás a la reunión ya briefeado.' },
+  { n: '08', title: 'Memoria de cada cliente',             desc: 'Reconoce a quienes ya consultaron y mantiene el historial. Atención personalizada, sin repetir todo cada vez.' },
+  { n: '09', title: 'Tu propio asistente como abogado',    desc: 'Vos también podés consultarle tu agenda, tus turnos y tus casos por WhatsApp. Tu estudio en el bolsillo.' },
+];
+---
+<section class="section section-alt" style="border-top:1px solid var(--line);">
+  <div class="container">
+    <div class="label-sec reveal">Qué hace</div>
+    <h2 class="h-display reveal d1" style="font-size:clamp(1.9rem,3.4vw,2.8rem);margin-top:36px;max-width:520px;">
+      Un proceso completo<br />de captación. <em>No un chatbot.</em>
+    </h2>
+
+    <div class="grid-features" style="margin-top:56px;">
+      {FEATURES.map((f, i) => (
+        <div class={`reveal d${(i % 2) + 1}`} style="display:flex;gap:24px;align-items:baseline;padding:26px 0;border-bottom:1px solid rgba(239,234,224,0.07);">
+          <span style="font-family:var(--font-body);font-size:11px;font-weight:500;color:var(--bronze);letter-spacing:0.1em;flex-shrink:0;">{f.n}</span>
+          <div>
+            <h3 style="font-family:var(--font-display);font-weight:600;font-size:1.08rem;color:var(--cream);margin:0 0 8px;">{f.title}</h3>
+            <p style="font-family:var(--font-body);font-size:0.88rem;font-weight:300;color:var(--cream-60);line-height:1.7;margin:0;">{f.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
