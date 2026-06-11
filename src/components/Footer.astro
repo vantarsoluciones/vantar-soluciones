@@ -1,67 +1,42 @@
 ---
+import Logo from './Logo.astro';
 const WA_LINK = 'https://wa.me/5498944628576?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20VantAr';
 const year = new Date().getFullYear();
 const LINKS = [
-  { href: '#como-funciona', label: 'Cómo funciona' },
-  { href: '#beneficios',    label: 'Beneficios' },
-  { href: '#resultados',    label: 'Resultados' },
-  { href: '#contacto',      label: 'Contacto' },
+  { href: '#el-problema', label: 'El problema' },
+  { href: '#la-solucion', label: 'La solución' },
+  { href: '#servicios',   label: 'Servicios' },
+  { href: '#resultados',  label: 'Resultados' },
+  { href: '#faq',         label: 'FAQ' },
 ];
 ---
-<footer style="background:#020810;padding:64px 32px 40px;border-top:1px solid rgba(0,212,255,0.08);">
-  <div style="max-width:1200px;margin:0 auto;">
-
-    <div style="display:flex;flex-wrap:wrap;gap:48px;justify-content:space-between;align-items:flex-start;margin-bottom:48px;">
-
-      <!-- Brand -->
-      <div style="max-width:280px;">
-        <a href="#" style="display:flex;align-items:center;gap:10px;text-decoration:none;margin-bottom:16px;">
-          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:36px;height:36px;flex-shrink:0;">
-            <defs>
-              <linearGradient id="vGradFoot" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#FFFFFF"/>
-                <stop offset="100%" stop-color="rgba(255,255,255,0.75)"/>
-              </linearGradient>
-            </defs>
-            <path d="M8 12 L40 68 L72 12 L60 12 L40 50 L20 12 Z" fill="url(#vGradFoot)"/>
-            <line x1="14" y1="22" x2="22" y2="22" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="22" cy="22" r="2" fill="#00B4CC"/>
-            <line x1="22" y1="22" x2="22" y2="17" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="66" y1="22" x2="58" y2="22" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="58" cy="22" r="2" fill="#00B4CC"/>
-            <line x1="58" y1="22" x2="58" y2="17" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="40" y1="56" x2="40" y2="64" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="36" y1="64" x2="44" y2="64" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="36" cy="64" r="2" fill="#00B4CC"/>
-            <circle cx="44" cy="64" r="2" fill="#00B4CC"/>
-          </svg>
-          <span style="font-family:var(--font-outfit);font-weight:700;font-size:1.2rem;color:#FFFFFF;">
-            Vant<span style="color:#00B4CC;">Ar</span>
-          </span>
+<footer style="background:var(--bg-alt);padding:64px 32px 40px;border-top:1px solid var(--line);">
+  <div class="container">
+    <div style="display:flex;flex-wrap:wrap;gap:48px;justify-content:space-between;align-items:flex-start;margin-bottom:52px;">
+      <div style="max-width:300px;">
+        <a href="#" style="text-decoration:none;display:inline-block;margin-bottom:18px;">
+          <Logo size={28} />
         </a>
-        <p style="font-family:var(--font-inter);font-size:0.875rem;color:rgba(255,255,255,0.45);line-height:1.7;margin:0;">
-          Tecnología en CX y Marketing para estudios jurídicos y abogados.
+        <p style="font-family:var(--font-body);font-size:0.85rem;font-weight:300;color:var(--cream-40);line-height:1.75;margin:0;">
+          Automatización e inteligencia artificial para estudios jurídicos y abogados.
         </p>
       </div>
 
-      <!-- Nav -->
       <nav style="display:flex;flex-direction:column;gap:14px;">
         {LINKS.map(l => (
-          <a href={l.href} class="footer-link">{l.label}</a>
+          <a href={l.href} class="nav-anchor" style="font-size:13px;">{l.label}</a>
         ))}
       </nav>
 
-      <!-- WA CTA -->
-      <a href={WA_LINK} target="_blank" rel="noopener noreferrer" class="footer-cta">
-        Escribinos
-      </a>
-
+      <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start;">
+        <a href="mailto:vantarsoluciones@gmail.com" class="nav-anchor" style="font-size:13px;">vantarsoluciones@gmail.com</a>
+        <a href={WA_LINK} target="_blank" rel="noopener noreferrer" class="btn-outline">Escribinos</a>
+      </div>
     </div>
 
-    <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;">
-      <span style="font-family:var(--font-inter);font-size:12px;color:rgba(255,255,255,0.3);">© {year} VantAr. Todos los derechos reservados.</span>
-      <span style="font-family:var(--font-inter);font-size:12px;color:rgba(255,255,255,0.3);">Tecnología en CX y Marketing</span>
+    <div style="border-top:1px solid rgba(239,234,224,0.07);padding-top:28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;">
+      <span style="font-family:var(--font-body);font-size:12px;color:rgba(239,234,224,0.3);">© {year} VantAr Soluciones. Todos los derechos reservados.</span>
+      <span style="font-family:var(--font-display);font-style:italic;font-size:12px;color:rgba(154,124,74,0.6);">Inteligencia artificial para estudios jurídicos</span>
     </div>
-
   </div>
 </footer>
