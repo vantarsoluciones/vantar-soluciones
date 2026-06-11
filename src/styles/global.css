@@ -197,6 +197,13 @@ body {
   .nav-links { display: none; }
 }
 
+@media (max-width: 520px) {
+  /* en pantallas chicas el wordmark choca con el CTA del navbar: queda solo el isotipo */
+  #vs-navbar { padding: 0 20px; }
+  #vs-navbar .logo-wordmark { display: none; }
+  #vs-navbar .btn-outline { padding: 9px 16px; font-size: 13px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal, .reveal-line { opacity: 1 !important; transform: none !important; transition: none !important; }
@@ -214,3 +221,8 @@ body {
 [data-ticks][data-state="read"] .tick-1,
 [data-ticks][data-state="read"] .tick-2 { stroke: #53BDEB; opacity: 1 !important; }
 [data-ticks] .tick-1, [data-ticks] .tick-2 { transition: opacity 0.2s ease, stroke 0.3s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  /* sin animación de giro, el spinner queda como arco congelado: mejor ocultarlo */
+  [data-upload-overlay] > div:first-child { display: none; }
+}
