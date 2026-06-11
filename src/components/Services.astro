@@ -1,0 +1,48 @@
+---
+const SERVICES = [
+  {
+    kicker: 'El asistente',
+    title: 'Asistente Virtual Inteligente',
+    desc: 'Atiende, entrevista, califica, agenda y te entrega cada caso resumido y priorizado. La estrella del sistema: tu estudio disponible 24/7 en WhatsApp.',
+  },
+  {
+    kicker: 'El motor',
+    title: 'Publicidad que trae casos',
+    desc: 'Campañas en Google y Meta que ponen tu estudio frente a personas que ya están buscando un abogado. Cada consulta pasa por el asistente antes de llegar a vos.',
+  },
+  {
+    kicker: 'La presencia',
+    title: 'Web y marca personal',
+    desc: 'Tu sitio y tu imagen profesional, a la altura de los honorarios que cobrás. La primera impresión también cierra casos.',
+  },
+];
+---
+<section id="servicios" class="section">
+  <div class="container">
+    <div class="label-sec reveal">Servicios</div>
+    <h2 class="h-display reveal d1" style="font-size:clamp(1.9rem,3.4vw,2.8rem);margin-top:36px;max-width:480px;">
+      Un sistema completo<br />de captación.
+    </h2>
+
+    <div class="grid-3col" style="margin-top:52px;border-top:1px solid var(--line-strong);">
+      {SERVICES.map((s, i) => (
+        <div class={`reveal d${i + 1} service-col`} style={`padding:32px ${i === 2 ? '0' : '36px'} 8px ${i === 0 ? '0' : '36px'};${i < 2 ? 'border-right:1px solid var(--line);' : ''}`}>
+          <div style="font-family:var(--font-display);font-style:italic;font-size:0.95rem;color:var(--bronze);margin-bottom:12px;">{s.kicker}</div>
+          <h3 style="font-family:var(--font-display);font-weight:600;font-size:1.35rem;color:var(--cream);margin:0;line-height:1.3;">{s.title}</h3>
+          <p style="font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:var(--cream-60);line-height:1.75;margin:14px 0 0;">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 900px) {
+    .service-col {
+      padding: 28px 0 !important;
+      border-right: none !important;
+      border-bottom: 1px solid var(--line);
+    }
+    .service-col:last-child { border-bottom: none; }
+  }
+</style>
