@@ -1,0 +1,53 @@
+---
+const STEPS = [
+  { n: '1', title: 'Relevamiento',           desc: 'Entendemos cómo trabaja tu estudio y qué necesitás.' },
+  { n: '2', title: 'Configuración a medida', desc: 'Adaptamos preguntas, tono y reglas a tu práctica.' },
+  { n: '3', title: 'Pruebas',                desc: 'Lo dejamos fino antes de que hable con un cliente real.' },
+  { n: '4', title: 'Salida en vivo',         desc: 'Tu asistente empieza a atender.' },
+  { n: '5', title: 'Acompañamiento',         desc: 'Ajustes y soporte continuo.' },
+];
+---
+<section class="section">
+  <div class="container">
+    <div class="label-sec reveal">Proceso</div>
+    <h2 class="h-display reveal d1" style="font-size:clamp(1.9rem,3.4vw,2.8rem);margin-top:36px;max-width:520px;">
+      En marcha <em>en pocos días.</em>
+    </h2>
+
+    <div style="position:relative;margin-top:64px;" class="process-track">
+      <div style="position:absolute;top:5px;left:0;right:0;height:1px;background:rgba(239,234,224,0.08);" class="process-line-bg"></div>
+      <div class="reveal-line process-line" style="position:absolute;top:5px;left:0;right:0;height:1px;background:var(--bronze);transition-duration:1.6s;"></div>
+
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:24px;" class="process-grid">
+        {STEPS.map((s, i) => (
+          <div class={`reveal d${Math.min(i + 1, 4)}`}>
+            <div style="width:11px;height:11px;border-radius:50%;background:var(--bg);border:1.5px solid var(--bronze);position:relative;z-index:1;"></div>
+            <div style="font-family:var(--font-display);font-style:italic;font-size:0.95rem;color:var(--bronze);margin-top:20px;">{s.n}.</div>
+            <h3 style="font-family:var(--font-display);font-weight:600;font-size:1.05rem;color:var(--cream);margin:8px 0 0;">{s.title}</h3>
+            <p style="font-family:var(--font-body);font-size:0.85rem;font-weight:300;color:var(--cream-60);line-height:1.65;margin:10px 0 0;">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <p class="reveal" style="font-family:var(--font-display);font-style:italic;font-size:1.05rem;color:var(--cream-60);text-align:center;margin:56px 0 0;">
+      Sin instalaciones complicadas de tu lado. Nos encargamos de todo.
+    </p>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 900px) {
+    .process-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+    .process-line-bg, .process-line {
+      top: 0 !important; left: 5px !important; right: auto !important;
+      width: 1px !important; height: 100% !important;
+    }
+    .process-line {
+      transform: scaleY(0);
+      transform-origin: top center !important;
+      transition-property: transform;
+    }
+    .process-line.in { transform: scaleY(1); }
+  }
+</style>
