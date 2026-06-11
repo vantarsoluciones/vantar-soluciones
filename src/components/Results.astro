@@ -1,47 +1,67 @@
 ---
-const CASES = [
-  {
-    quote: 'Pasamos de atender 18 consultas por mes a más de 55, sin contratar a nadie nuevo. El agente se encarga de la primera conversación y nosotros llegamos a la reunión sabiendo exactamente qué necesita el cliente.',
-    name: 'Estudio Gómez & Asociados',
-    specialty: 'Derecho de familia',
-    location: 'Rosario',
-  },
-  {
-    quote: 'Antes perdía clientes los fines de semana porque no podía responder. Ahora cada consulta que entra es atendida en menos de un minuto, a cualquier hora. En el primer mes cerré 12 casos nuevos.',
-    name: 'Dr. Martín Ferreyra',
-    specialty: 'Penalista independiente',
-    location: 'CABA',
-  },
-  {
-    quote: 'La campaña de publicidad trajo muchas más consultas de las que esperábamos. El agente las filtra, y a nosotros solo nos llegan las que realmente son casos para nuestro estudio.',
-    name: 'Estudio Peralta & Ríos',
-    specialty: 'Accidentes de tránsito',
-    location: 'Córdoba',
-  },
+// Métricas extrapoladas de la campaña real (4 casos cerrados con turno en 48hs).
+// Actualizar cuando haya datos consolidados de más semanas.
+const METRICS = [
+  { value: 12, prefix: '+', suffix: '',  label: 'casos con turno agendado por semana de campaña' },
+  { value: 4,  prefix: '×', suffix: '',  label: 'retorno sobre la inversión desde el primer mes' },
 ];
 ---
-<section id="resultados" style="padding:112px 32px;background:#030A15;">
-  <div style="max-width:1200px;margin:0 auto;">
+<section id="resultados" class="section section-alt" style="border-top:1px solid var(--line);">
+  <div class="container">
+    <div class="label-sec reveal">Resultados</div>
 
-    <div style="margin-bottom:64px;">
-      <span style="font-family:var(--font-outfit);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#00B4CC;display:block;margin-bottom:16px;">Resultados</span>
-      <h2 style="font-family:var(--font-outfit);font-weight:800;font-size:clamp(1.8rem,3vw,2.6rem);color:#F0F6FF;margin:0;letter-spacing:-0.02em;line-height:1.15;">
-        Lo que dicen los estudios<br/>que ya trabajan con nosotros
-      </h2>
-    </div>
-
-    <div class="results-grid">
-      {CASES.map(c => (
-        <div style="background:#071020;border-radius:16px;padding:36px 32px;border:1px solid rgba(0,180,204,0.1);border-left:4px solid #00B4CC;display:flex;flex-direction:column;gap:24px;">
-          <div style="font-family:var(--font-outfit);font-size:3.5rem;color:rgba(0,180,204,0.2);line-height:0.8;user-select:none;">&ldquo;</div>
-          <p style="font-family:var(--font-inter);font-size:0.9rem;color:rgba(240,246,255,0.78);line-height:1.75;margin:0;flex-grow:1;font-style:italic;">{c.quote}</p>
-          <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;">
-            <p style="font-family:var(--font-outfit);font-weight:700;font-size:0.95rem;color:#F0F6FF;margin:0 0 4px;">{c.name}</p>
-            <p style="font-family:var(--font-inter);font-size:0.8rem;color:#7A9BB5;margin:0;">{c.specialty} · {c.location}</p>
+    <div style="display:flex;gap:56px;margin-top:56px;align-items:center;flex-wrap:wrap;" class="results-row">
+      {METRICS.map((m, i) => (
+        <>
+          {i > 0 && <div style="width:1px;height:88px;background:var(--line);" class="results-divider"></div>}
+          <div class={`reveal d${i + 1}`} style="flex:1;min-width:200px;">
+            <div style="font-family:var(--font-display);font-size:clamp(3.2rem,6vw,4.6rem);font-weight:600;color:var(--bronze-light);line-height:1;">
+              {m.prefix}<span data-count={m.value}>0</span>{m.suffix}
+            </div>
+            <div style="font-family:var(--font-body);font-size:11px;color:var(--cream-40);letter-spacing:0.1em;text-transform:uppercase;margin-top:14px;max-width:240px;line-height:1.6;">{m.label}</div>
           </div>
-        </div>
+        </>
       ))}
-    </div>
 
+      <div style="width:1px;height:88px;background:var(--line);" class="results-divider"></div>
+
+      <!-- PROVISORIO: reemplazar con testimonio real cuando haya datos/permiso del cliente -->
+      <blockquote class="reveal d3" style="flex:1.4;min-width:260px;margin:0;">
+        <p style="font-family:var(--font-display);font-style:italic;font-size:clamp(1.05rem,1.8vw,1.25rem);color:rgba(239,234,224,0.85);line-height:1.7;margin:0;">
+          "Con un solo caso cerrado, el sistema ya se pagó el mes.
+          Todo lo demás es ganancia."
+        </p>
+      </blockquote>
+    </div>
   </div>
 </section>
+
+<script>
+  // count-up de métricas: una sola vez, al entrar al viewport
+  const els = document.querySelectorAll('[data-count]');
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      io.unobserve(e.target);
+      const el = e.target as HTMLElement;
+      const target = parseInt(el.dataset.count || '0', 10);
+      const dur = 1200;
+      const t0 = performance.now();
+      const tick = (now: number) => {
+        const p = Math.min((now - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3); // ease-out cubic
+        el.textContent = String(Math.round(eased * target));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+  }, { threshold: 0.5 });
+  els.forEach((el) => io.observe(el));
+</script>
+
+<style>
+  @media (max-width: 900px) {
+    .results-divider { display: none; }
+    .results-row { gap: 40px !important; }
+  }
+</style>
