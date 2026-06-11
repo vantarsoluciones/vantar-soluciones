@@ -5,8 +5,8 @@ interface Props {
   description?: string;
 }
 const {
-  title = 'VantAr — Tecnología en CX y Marketing para Abogados',
-  description = 'VantAr atiende a tus potenciales clientes al instante, los entrevista, y te entrega todo listo para que vos cierres el caso. Marketing y automatización para estudios jurídicos.',
+  title = 'VantAr — Asistente Virtual Inteligente para estudios jurídicos',
+  description = 'Tu estudio, disponible 24/7 en WhatsApp. Un asistente con IA que atiende, entrevista, califica y agenda clientes solo — más publicidad que llena tu agenda de casos.',
 } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -17,12 +17,26 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content="El cliente que no respondiste ya llamó al siguiente. VantAr responde por vos." />
+    <meta property="og:description" content="Atiende. Entrevista. Califica. Agenda. Te avisa. Mientras dormís, tu estudio sigue captando clientes." />
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.svg" />
   </head>
   <body>
     <slot />
+    <script>
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              io.unobserve(e.target);
+            }
+          }
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+      );
+      document.querySelectorAll('.reveal, .reveal-line').forEach((el) => io.observe(el));
+    </script>
   </body>
 </html>
