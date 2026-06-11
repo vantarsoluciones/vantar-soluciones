@@ -206,3 +206,11 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ── WA chat ── */
+[data-ticks][data-state="none"] svg { opacity: 0; }
+[data-ticks][data-state="sent"] .tick-2 { opacity: 0 !important; }
+[data-ticks][data-state="delivered"] .tick-2 { opacity: 1 !important; }
+[data-ticks][data-state="read"] .tick-1,
+[data-ticks][data-state="read"] .tick-2 { stroke: #53BDEB; opacity: 1 !important; }
+[data-ticks] .tick-1, [data-ticks] .tick-2 { transition: opacity 0.2s ease, stroke 0.3s ease; }

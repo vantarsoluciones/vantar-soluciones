@@ -1,70 +1,41 @@
 ---
-const NODES = [
-  { id: 1, emoji: '👤', title: 'Potencial cliente',        desc: 'Escribe al WhatsApp del estudio en cualquier momento. No importa si es domingo a la medianoche.', highlight: false },
-  { id: 2, emoji: '',   title: 'Agente VantAr',            desc: 'Responde al instante. Hace las preguntas exactas según el tipo de caso y el estilo del estudio.', highlight: true  },
-  { id: 3, emoji: '⚙️', title: 'Procesamiento automático', desc: 'Organiza y estructura toda la información. Clasifica el caso, evalúa la urgencia.',            highlight: false },
-  { id: 4, emoji: '💼', title: 'El abogado',               desc: 'Recibe un resumen claro y completo. Llega a la reunión preparado, sin perder tiempo.',          highlight: false },
+const FEATURES_DEMO = [
+  'Entrevista con criterio, como una secretaria con experiencia',
+  'Transcribe audios y lee documentos e imágenes',
+  'Agenda el turno directo en tu Google Calendar',
 ];
 
 const WAVEFORM = [4,8,12,18,24,26,20,30,26,20,16,24,28,22,18,14,26,22,18,12,20,16,12,8,6,10,14,8,5,3];
 ---
 
-<section id="como-funciona" style="padding:112px 32px;background:#071020;">
-  <div style="max-width:1200px;margin:0 auto;">
+<section id="la-solucion" class="section" style="position:relative;">
+  <div class="container">
+    <div class="label-sec reveal">La solución, en vivo</div>
 
-    <!-- Header -->
-    <div style="text-align:center;margin-bottom:80px;">
-      <span style="font-family:var(--font-outfit);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#00B4CC;display:block;margin-bottom:16px;">Cómo funciona</span>
-      <h2 style="font-family:var(--font-outfit);font-weight:800;font-size:clamp(2rem,3.5vw,3rem);color:#F0F6FF;margin:0 0 20px;line-height:1.1;letter-spacing:-0.02em;">
-        De la consulta al turno,<br/>sin que intervengas
-      </h2>
-      <p style="font-family:var(--font-inter);font-size:1.1rem;color:#7A9BB5;max-width:520px;margin:0 auto;line-height:1.7;">
-        Todo ocurre automáticamente. Vos solo aparecés cuando el cliente ya está listo para cerrar el caso.
-      </p>
-    </div>
+    <div class="grid-demo" style="margin-top:48px;">
 
-    <div class="flow-grid">
-
-      <!-- Left: flow nodes -->
+      <!-- Columna copy -->
       <div>
-        {NODES.map((node, i) => (
-          <div>
-            <div style="display:flex;align-items:flex-start;gap:20px;">
-              <div style={`width:52px;height:52px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;overflow:hidden;padding:${node.highlight ? '7px' : '0'};${node.highlight ? 'background:#0D1930;border:1px solid rgba(0,180,204,0.25);box-shadow:0 8px 24px rgba(0,180,204,0.2);' : 'background:rgba(0,180,204,0.07);border:1.5px solid rgba(0,180,204,0.15);'}`}>
-                {node.highlight ? (
-                  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-                    <defs><linearGradient id="vGradNode" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="rgba(255,255,255,0.75)"/></linearGradient></defs>
-                    <path d="M8 12 L40 68 L72 12 L60 12 L40 50 L20 12 Z" fill="url(#vGradNode)"/>
-                    <line x1="14" y1="22" x2="22" y2="22" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-                    <circle cx="22" cy="22" r="2" fill="#00B4CC"/>
-                    <line x1="22" y1="22" x2="22" y2="17" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-                    <line x1="66" y1="22" x2="58" y2="22" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-                    <circle cx="58" cy="22" r="2" fill="#00B4CC"/>
-                    <line x1="58" y1="22" x2="58" y2="17" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-                    <line x1="40" y1="56" x2="40" y2="64" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-                    <line x1="36" y1="64" x2="44" y2="64" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-                    <circle cx="36" cy="64" r="2" fill="#00B4CC"/>
-                    <circle cx="44" cy="64" r="2" fill="#00B4CC"/>
-                  </svg>
-                ) : node.emoji}
-              </div>
-              <div style="padding-top:4px;">
-                <h3 style="font-family:var(--font-outfit);font-weight:700;font-size:1.05rem;color:#F0F6FF;margin:0 0 6px;">{node.title}</h3>
-                <p style="font-family:var(--font-inter);font-size:0.875rem;color:#7A9BB5;margin:0;line-height:1.65;">{node.desc}</p>
-              </div>
+        <h2 class="h-display reveal d1" style="font-size:clamp(1.9rem,3.4vw,2.8rem);">
+          No te lo contamos.<br /><em>Miralo atender.</em>
+        </h2>
+        <p class="reveal d2" style="font-family:var(--font-body);font-size:0.98rem;font-weight:300;color:var(--cream-60);line-height:1.85;margin:24px 0 0;max-width:400px;">
+          Esto es una conversación del asistente, igual a las que va a tener con
+          tus clientes: entiende el caso, pide lo que falta y cierra el turno —
+          sin que vos toques el teléfono.
+        </p>
+        <div style="margin-top:34px;display:flex;flex-direction:column;gap:16px;">
+          {FEATURES_DEMO.map((f, i) => (
+            <div class={`reveal d${i + 2}`} style="display:flex;gap:16px;align-items:center;">
+              <div class="reveal-line" style="width:26px;height:1px;background:var(--bronze);flex-shrink:0;"></div>
+              <span style="font-family:var(--font-body);font-size:0.9rem;color:var(--cream-60);">{f}</span>
             </div>
-            {i < NODES.length - 1 && (
-              <div style={`position:relative;margin-left:25px;width:6px;height:52px;background:rgba(0,180,204,0.18);overflow:hidden;`}>
-                <div style={`position:absolute;left:-2px;width:6px;height:18px;background:linear-gradient(to bottom,transparent,#00B4CC 50%,transparent);border-radius:3px;animation:flow-particle 1.8s ease-in-out ${i * 0.4}s infinite;`}></div>
-                <div style={`position:absolute;left:-2px;width:6px;height:18px;background:linear-gradient(to bottom,transparent,#00B4CC 50%,transparent);border-radius:3px;animation:flow-particle 1.8s ease-in-out ${i * 0.4 + 0.9}s infinite;`}></div>
-              </div>
-            )}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
-      <!-- Right: iPhone + chat simulator -->
-      <div style="display:flex;justify-content:center;align-items:flex-start;">
+      <!-- Columna teléfono -->
+      <div style="display:flex;justify-content:center;align-items:flex-start;" class="reveal d2" id="phone-wrap">
 
         <!-- iPhone 17 Frame -->
         <div style="position:relative;width:328px;margin:0 auto;">
@@ -96,24 +67,19 @@ const WAVEFORM = [4,8,12,18,24,26,20,30,26,20,16,24,28,22,18,14,26,22,18,12,20,1
                 <div style="padding:4px 6px;color:rgba(255,255,255,0.85);flex-shrink:0;">
                   <svg width="10" height="17" viewBox="0 0 10 17" fill="none"><path d="M9 1.5L1.5 8.5L9 15.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
-                <div style="width:38px;height:38px;border-radius:50%;background:#0D1F42;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;padding:3px;">
-                  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-                    <defs><linearGradient id="vGradChat" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="rgba(255,255,255,0.75)"/></linearGradient></defs>
-                    <path d="M8 12 L40 68 L72 12 L60 12 L40 50 L20 12 Z" fill="url(#vGradChat)"/>
-                    <line x1="14" y1="22" x2="22" y2="22" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-                    <circle cx="22" cy="22" r="2" fill="#00B4CC"/>
-                    <line x1="22" y1="22" x2="22" y2="17" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-                    <line x1="66" y1="22" x2="58" y2="22" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-                    <circle cx="58" cy="22" r="2" fill="#00B4CC"/>
-                    <line x1="58" y1="22" x2="58" y2="17" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-                    <line x1="40" y1="56" x2="40" y2="64" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-                    <line x1="36" y1="64" x2="44" y2="64" stroke="#00B4CC" stroke-width="1.5" stroke-linecap="round"/>
-                    <circle cx="36" cy="64" r="2" fill="#00B4CC"/>
-                    <circle cx="44" cy="64" r="2" fill="#00B4CC"/>
+                <div style="width:38px;height:38px;border-radius:50%;background:#0D1830;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;padding:3px;">
+                  <svg viewBox="0 0 80 80" fill="none" style="width:100%;height:100%;">
+                    <path d="M12 14 L40 64 L68 14 L58.5 14 L40 47.5 L21.5 14 Z" fill="#EFEAE0"/>
+                    <line x1="17" y1="23" x2="26" y2="23" stroke="#9A7C4A" stroke-width="1.8" stroke-linecap="round"/>
+                    <circle cx="26" cy="23" r="2.4" fill="#9A7C4A"/>
+                    <line x1="63" y1="23" x2="54" y2="23" stroke="#9A7C4A" stroke-width="1.8" stroke-linecap="round"/>
+                    <circle cx="54" cy="23" r="2.4" fill="#9A7C4A"/>
+                    <line x1="40" y1="53" x2="40" y2="60" stroke="#9A7C4A" stroke-width="1.8" stroke-linecap="round"/>
+                    <circle cx="40" cy="60" r="2.4" fill="#9A7C4A"/>
                   </svg>
                 </div>
                 <div style="flex:1;margin-left:8px;">
-                  <p style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-weight:600;font-size:15px;color:#FFF;margin:0;line-height:1.2;">VantAr — Agente</p>
+                  <p style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-weight:600;font-size:15px;color:#FFF;margin:0;line-height:1.2;">VantAr — Asistente</p>
                   <p id="wa-status" style="font-family:-apple-system,sans-serif;font-size:11.5px;color:rgba(255,255,255,0.7);margin:0;line-height:1.3;transition:color 0.25s;">en línea</p>
                 </div>
                 <div style="display:flex;gap:18px;color:rgba(255,255,255,0.88);flex-shrink:0;">
@@ -126,14 +92,21 @@ const WAVEFORM = [4,8,12,18,24,26,20,30,26,20,16,24,28,22,18,14,26,22,18,12,20,1
               <!-- Messages -->
               <div id="chat-messages" style="flex:1;min-height:0;overflow-y:auto;padding:10px 8px;display:flex;flex-direction:column;gap:4px;background:#ECE5DD;scrollbar-width:none;">
 
-                <!-- Messages will be shown by JS, all hidden initially -->
+                <!-- Date chip — always visible, never hidden by reset -->
+                <div style="align-self:center;background:#FFF;border-radius:8px;padding:4px 10px;font-size:11px;color:#54656F;box-shadow:0 1px 1px rgba(0,0,0,0.08);font-family:-apple-system,sans-serif;">Hoy</div>
+
                 <!-- 0: client text -->
                 <div data-msg="0" style="display:none;justify-content:flex-end;">
                   <div style="max-width:80%;padding:8px 10px 22px;border-radius:18px 18px 4px 18px;background:#D9FDD3;box-shadow:0 1px 2px rgba(0,0,0,0.13);position:relative;">
                     <p style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:14px;font-weight:500;color:#111;margin:0;line-height:1.45;">Hola, sufrí un accidente laboral y necesito asesoramiento</p>
                     <div style="position:absolute;bottom:5px;right:8px;display:flex;align-items:center;gap:3px;">
                       <span style="font-family:-apple-system,sans-serif;font-size:10px;color:rgba(0,0,0,0.42);">10:41</span>
-                      <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><path d="M1 6L4 9L10 1" stroke="#53BDEB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6L9 9L15 1" stroke="#53BDEB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      <span data-ticks data-state="none" style="display:inline-flex;align-items:center;">
+                        <svg width="16" height="11" viewBox="0 0 16 11" fill="none">
+                          <path class="tick-1" d="M1 6L4 9L10 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path class="tick-2" d="M6 6L9 9L15 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity:0;"/>
+                        </svg>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -150,7 +123,12 @@ const WAVEFORM = [4,8,12,18,24,26,20,30,26,20,16,24,28,22,18,14,26,22,18,12,20,1
                     <p style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:14px;font-weight:500;color:#111;margin:0;line-height:1.45;">Fue el lunes a la mañana</p>
                     <div style="position:absolute;bottom:5px;right:8px;display:flex;align-items:center;gap:3px;">
                       <span style="font-family:-apple-system,sans-serif;font-size:10px;color:rgba(0,0,0,0.42);">10:42</span>
-                      <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><path d="M1 6L4 9L10 1" stroke="#53BDEB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6L9 9L15 1" stroke="#53BDEB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      <span data-ticks data-state="none" style="display:inline-flex;align-items:center;">
+                        <svg width="16" height="11" viewBox="0 0 16 11" fill="none">
+                          <path class="tick-1" d="M1 6L4 9L10 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path class="tick-2" d="M6 6L9 9L15 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity:0;"/>
+                        </svg>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -169,17 +147,24 @@ const WAVEFORM = [4,8,12,18,24,26,20,30,26,20,16,24,28,22,18,14,26,22,18,12,20,1
                         <svg width="11" height="13" viewBox="0 0 11 13" fill="white"><path d="M1 1l9 5.5L1 12V1z"/></svg>
                       </div>
                       <div style="display:flex;align-items:center;gap:2px;flex:1;">
-                        {WAVEFORM.map((h, i) => (
-                          <div style={`width:2px;height:${h}px;background:${i < 10 ? '#128C7E' : '#A0A8A0'};border-radius:2px;transform-origin:bottom;animation:bar-grow 0.38s ease ${i * 0.03}s both;`}></div>
+                        {WAVEFORM.map((h) => (
+                          <div data-wavebar style={`width:2px;height:${h}px;background:#A0A8A0;border-radius:2px;`}></div>
                         ))}
                       </div>
-                      <span style="font-family:-apple-system,sans-serif;font-size:11px;color:rgba(0,0,0,0.5);flex-shrink:0;">0:14</span>
+                      <span data-audio-time style="font-family:-apple-system,sans-serif;font-size:11px;color:rgba(0,0,0,0.5);flex-shrink:0;">0:14</span>
                       <div style="width:26px;height:26px;border-radius:50%;background:#B8C8B0;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;">👤</div>
                     </div>
-                    <p style="font-family:-apple-system,sans-serif;font-size:12px;color:rgba(0,0,0,0.52);font-style:italic;margin:6px 0 0;line-height:1.45;">"Estaba en el depósito moviendo cajas y resbalé porque el piso estaba mojado sin señalización. Me lastimé la muñeca derecha y tuve que ir a la guardia."</p>
+                    <div data-transcript style="display:none;">
+                      <p style="font-family:-apple-system,sans-serif;font-size:12px;color:rgba(0,0,0,0.52);font-style:italic;margin:6px 0 0;line-height:1.45;">"Estaba en el depósito moviendo cajas y resbalé porque el piso estaba mojado sin señalización. Me lastimé la muñeca derecha y tuve que ir a la guardia."</p>
+                    </div>
                     <div style="position:absolute;bottom:5px;right:8px;display:flex;align-items:center;gap:3px;">
                       <span style="font-family:-apple-system,sans-serif;font-size:10px;color:rgba(0,0,0,0.42);">10:43</span>
-                      <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><path d="M1 6L4 9L10 1" stroke="#53BDEB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6L9 9L15 1" stroke="#53BDEB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      <span data-ticks data-state="none" style="display:inline-flex;align-items:center;">
+                        <svg width="16" height="11" viewBox="0 0 16 11" fill="none">
+                          <path class="tick-1" d="M1 6L4 9L10 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path class="tick-2" d="M6 6L9 9L15 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity:0;"/>
+                        </svg>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -231,9 +216,14 @@ const WAVEFORM = [4,8,12,18,24,26,20,30,26,20,16,24,28,22,18,14,26,22,18,12,20,1
                         </div>
                       </div>
                       <div style="position:absolute;bottom:7px;left:76px;display:flex;gap:1.5px;align-items:flex-end;">
-                        {[8,14,8,18,10,16,8,12,18,8,14,10,18,8,12].map((h: number, i: number) => (
-                          <div style={`width:${i % 3 === 1 ? '3px' : '1.5px'};height:${h}px;background:#1A1A1A;border-radius:0.3px;`}></div>
+                        {[8,14,8,18,10,16,8,12,18,8,14,10,18,8,12].map((h: number) => (
+                          <div style={`width:${h === 14 ? '3px' : '1.5px'};height:${h}px;background:#1A1A1A;border-radius:0.3px;`}></div>
                         ))}
+                      </div>
+                      <!-- Upload overlay -->
+                      <div data-upload-overlay style="position:absolute;inset:0;z-index:2;background:rgba(240,238,232,0.55);backdrop-filter:blur(6px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:1;">
+                        <div style="width:34px;height:34px;border-radius:50%;border:3px solid rgba(0,0,0,0.15);border-top-color:#128C7E;animation:spin 0.8s linear infinite;"></div>
+                        <span data-upload-pct style="font-family:-apple-system,sans-serif;font-size:11px;font-weight:600;color:#333;">0%</span>
                       </div>
                     </div>
                     <div style="padding:5px 10px 22px;">
@@ -241,7 +231,12 @@ const WAVEFORM = [4,8,12,18,24,26,20,30,26,20,16,24,28,22,18,14,26,22,18,12,20,1
                     </div>
                     <div style="position:absolute;bottom:5px;right:8px;display:flex;align-items:center;gap:3px;">
                       <span style="font-family:-apple-system,sans-serif;font-size:10px;color:rgba(0,0,0,0.42);">10:44</span>
-                      <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><path d="M1 6L4 9L10 1" stroke="#53BDEB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6L9 9L15 1" stroke="#53BDEB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      <span data-ticks data-state="none" style="display:inline-flex;align-items:center;">
+                        <svg width="16" height="11" viewBox="0 0 16 11" fill="none">
+                          <path class="tick-1" d="M1 6L4 9L10 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path class="tick-2" d="M6 6L9 9L15 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity:0;"/>
+                        </svg>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -258,7 +253,12 @@ const WAVEFORM = [4,8,12,18,24,26,20,30,26,20,16,24,28,22,18,14,26,22,18,12,20,1
                     <p style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:14px;font-weight:500;color:#111;margin:0;line-height:1.45;">Sí, creo que es Galeno</p>
                     <div style="position:absolute;bottom:5px;right:8px;display:flex;align-items:center;gap:3px;">
                       <span style="font-family:-apple-system,sans-serif;font-size:10px;color:rgba(0,0,0,0.42);">10:45</span>
-                      <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><path d="M1 6L4 9L10 1" stroke="#53BDEB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6L9 9L15 1" stroke="#53BDEB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      <span data-ticks data-state="none" style="display:inline-flex;align-items:center;">
+                        <svg width="16" height="11" viewBox="0 0 16 11" fill="none">
+                          <path class="tick-1" d="M1 6L4 9L10 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path class="tick-2" d="M6 6L9 9L15 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity:0;"/>
+                        </svg>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -275,7 +275,12 @@ const WAVEFORM = [4,8,12,18,24,26,20,30,26,20,16,24,28,22,18,14,26,22,18,12,20,1
                     <p style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:14px;font-weight:500;color:#111;margin:0;line-height:1.45;">Sí, le avisé a mi jefe ese mismo día</p>
                     <div style="position:absolute;bottom:5px;right:8px;display:flex;align-items:center;gap:3px;">
                       <span style="font-family:-apple-system,sans-serif;font-size:10px;color:rgba(0,0,0,0.42);">10:46</span>
-                      <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><path d="M1 6L4 9L10 1" stroke="#53BDEB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6L9 9L15 1" stroke="#53BDEB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      <span data-ticks data-state="none" style="display:inline-flex;align-items:center;">
+                        <svg width="16" height="11" viewBox="0 0 16 11" fill="none">
+                          <path class="tick-1" d="M1 6L4 9L10 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path class="tick-2" d="M6 6L9 9L15 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity:0;"/>
+                        </svg>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -292,7 +297,12 @@ const WAVEFORM = [4,8,12,18,24,26,20,30,26,20,16,24,28,22,18,14,26,22,18,12,20,1
                     <p style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:14px;font-weight:500;color:#111;margin:0;line-height:1.45;">El jueves a la mañana me viene bien</p>
                     <div style="position:absolute;bottom:5px;right:8px;display:flex;align-items:center;gap:3px;">
                       <span style="font-family:-apple-system,sans-serif;font-size:10px;color:rgba(0,0,0,0.42);">10:47</span>
-                      <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><path d="M1 6L4 9L10 1" stroke="#53BDEB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6L9 9L15 1" stroke="#53BDEB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      <span data-ticks data-state="none" style="display:inline-flex;align-items:center;">
+                        <svg width="16" height="11" viewBox="0 0 16 11" fill="none">
+                          <path class="tick-1" d="M1 6L4 9L10 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path class="tick-2" d="M6 6L9 9L15 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity:0;"/>
+                        </svg>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -321,9 +331,9 @@ const WAVEFORM = [4,8,12,18,24,26,20,30,26,20,16,24,28,22,18,14,26,22,18,12,20,1
                   <svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5 14.67 11 15.5 11zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
                 </div>
                 <div style="flex:1;background:#FFF;border-radius:19px;padding:9px 14px;min-height:38px;max-height:64px;overflow-y:hidden;line-height:20px;">
-                  <span id="input-display" style="font-family:-apple-system,sans-serif;font-size:14px;color:#9EA5AE;word-break:break-word;">Mensaje</span><span id="cursor-blink" style="display:none;width:2px;height:15px;background:#00B4CC;margin-left:1px;vertical-align:text-bottom;animation:cursor-blink 1s step-end infinite;display:none;"></span>
+                  <span id="input-display" style="font-family:-apple-system,sans-serif;font-size:14px;color:#9EA5AE;word-break:break-word;">Mensaje</span><span id="cursor-blink" style="display:none;width:2px;height:15px;background:#00B4CC;margin-left:1px;vertical-align:text-bottom;animation:cursor-blink 1s step-end infinite;"></span>
                 </div>
-                <div id="send-icon" style="display:none;width:38px;height:38px;border-radius:50%;background:#128C7E;display:none;align-items:center;justify-content:center;flex-shrink:0;">
+                <div id="send-icon" style="display:none;width:38px;height:38px;border-radius:50%;background:#128C7E;align-items:center;justify-content:center;flex-shrink:0;">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                 </div>
                 <div id="camera-icon" style="color:#8696A0;flex-shrink:0;padding-bottom:6px;">
@@ -367,134 +377,229 @@ const WAVEFORM = [4,8,12,18,24,26,20,30,26,20,16,24,28,22,18,14,26,22,18,12,20,1
             <div style="width:50px;height:6px;background:#0C0C0C;border-radius:3px;box-shadow:inset 0 1px 2px rgba(0,0,0,0.9);"></div>
           </div>
         </div>
+
       </div>
 
     </div>
-
   </div>
 </section>
 
 <script>
-(function() {
+(function () {
   const CHAT = [
-    { from: 'client', type: 'text', text: 'Hola, sufrí un accidente laboral y necesito asesoramiento' },
-    { from: 'agent',  type: 'text', text: '¡Hola! Con gusto te ayudamos. ¿Cuándo ocurrió el accidente?' },
-    { from: 'client', type: 'text', text: 'Fue el lunes a la mañana' },
-    { from: 'agent',  type: 'text', text: '¿Podés contarnos brevemente cómo fue?' },
+    { from: 'client', type: 'text',  text: 'Hola, sufrí un accidente laboral y necesito asesoramiento' },
+    { from: 'agent',  type: 'text',  text: '¡Hola! Con gusto te ayudamos. ¿Cuándo ocurrió el accidente?' },
+    { from: 'client', type: 'text',  text: 'Fue el lunes a la mañana' },
+    { from: 'agent',  type: 'text',  text: '¿Podés contarnos brevemente cómo fue?' },
     { from: 'client', type: 'audio' },
-    { from: 'agent',  type: 'text', text: 'Entendido. ¿Podés enviarnos el informe médico de la guardia?' },
+    { from: 'agent',  type: 'text',  text: 'Entendido. ¿Podés enviarnos el informe médico de la guardia?' },
     { from: 'client', type: 'image' },
-    { from: 'agent',  type: 'text', text: 'Recibí el informe. Veo que el diagnóstico es esguince grado II de muñeca derecha, atendido el lunes a las 10:23 hs por el Dr. Ramírez. Anotado. ¿Tu empresa tiene ART?' },
-    { from: 'client', type: 'text', text: 'Sí, creo que es Galeno' },
-    { from: 'agent',  type: 'text', text: '¿Tu empleador estaba al tanto cuando ocurrió?' },
-    { from: 'client', type: 'text', text: 'Sí, le avisé a mi jefe ese mismo día' },
-    { from: 'agent',  type: 'text', text: 'Perfecto. ¿Tenés disponibilidad esta semana para una consulta?' },
-    { from: 'client', type: 'text', text: 'El jueves a la mañana me viene bien' },
-    { from: 'agent',  type: 'text', text: 'Te confirmo turno para el jueves a las 10:00 hs. Te va a atender la Dra. Peralta. ¡Hasta el jueves!' },
-  ];
+    { from: 'agent',  type: 'text',  text: 'Recibí el informe. Veo que el diagnóstico es esguince grado II de muñeca derecha, atendido el lunes a las 10:23 hs por el Dr. Ramírez. Anotado. ¿Tu empresa tiene ART?' },
+    { from: 'client', type: 'text',  text: 'Sí, creo que es Galeno' },
+    { from: 'agent',  type: 'text',  text: '¿Tu empleador estaba al tanto cuando ocurrió?' },
+    { from: 'client', type: 'text',  text: 'Sí, le avisé a mi jefe ese mismo día' },
+    { from: 'agent',  type: 'text',  text: 'Perfecto. ¿Tenés disponibilidad esta semana para una consulta?' },
+    { from: 'client', type: 'text',  text: 'El jueves a la mañana me viene bien' },
+    { from: 'agent',  type: 'text',  text: 'Te confirmo turno para el jueves a las 10:00 hs. Te va a atender la Dra. Peralta. ¡Hasta el jueves!' },
+  ] as const;
 
-  let visibleCount = 0;
-  let timer = null;
-  let charInterval = null;
+  type ChatEntry = typeof CHAT[number];
 
-  const msgs      = document.getElementById('chat-messages');
-  const typing    = document.getElementById('typing-indicator');
-  const inputDisp = document.getElementById('input-display');
-  const cursor    = document.getElementById('cursor-blink');
-  const sendIcon  = document.getElementById('send-icon');
-  const camIcon   = document.getElementById('camera-icon');
-  const waStatus  = document.getElementById('wa-status');
+  let i = 0;
+  let running = false;
+  let runId = 0;
+
+  const msgs     = document.getElementById('chat-messages') as HTMLElement | null;
+  const typing   = document.getElementById('typing-indicator') as HTMLElement | null;
+  const inputEl  = document.getElementById('input-display') as HTMLElement | null;
+  const cursor   = document.getElementById('cursor-blink') as HTMLElement | null;
+  const sendIcon = document.getElementById('send-icon') as HTMLElement | null;
+  const camIcon  = document.getElementById('camera-icon') as HTMLElement | null;
+  const waStatus = document.getElementById('wa-status') as HTMLElement | null;
+  const phone    = document.getElementById('phone-wrap') as HTMLElement | null;
+
+  const wait = (ms: number) => new Promise<void>((res) => setTimeout(res, ms));
+  const jitter = (ms: number, spread = 0.35) => ms * (1 - spread + Math.random() * spread * 2);
 
   function scrollBottom() {
-    if (msgs) msgs.scrollTop = msgs.scrollHeight;
+    if (msgs) msgs.scrollTo({ top: msgs.scrollHeight, behavior: 'smooth' });
   }
 
-  function showMsg(i) {
-    const el = document.querySelector(`[data-msg="${i}"]`);
-    if (el) { el.style.display = 'flex'; scrollBottom(); }
+  function setStatus(text: string) {
+    if (!waStatus) return;
+    waStatus.textContent = text;
+    waStatus.style.color = text === 'en línea' ? 'rgba(255,255,255,0.7)' : '#A8E6D0';
   }
 
-  function showTyping(show) {
-    if (!typing) return;
-    typing.style.display = show ? 'flex' : 'none';
-    if (waStatus) waStatus.style.color = show ? '#A8E6D0' : 'rgba(255,255,255,0.7)';
-    if (waStatus) waStatus.textContent = show ? 'escribiendo...' : 'en línea';
-    if (show) scrollBottom();
+  function showMsg(idx: number) {
+    const el = document.querySelector(`[data-msg="${idx}"]`) as HTMLElement | null;
+    if (el) {
+      el.style.display = 'flex';
+      el.style.animation = 'msg-in 0.3s ease-out both';
+      scrollBottom();
+    }
+    return el;
   }
 
-  function setInput(text) {
-    if (!inputDisp) return;
+  async function progressTicks(el: HTMLElement | null, id: number) {
+    const ticks = el && (el.querySelector('[data-ticks]') as HTMLElement | null);
+    if (!ticks) return;
+    ticks.dataset.state = 'sent';
+    await wait(jitter(500)); if (id !== runId) return;
+    ticks.dataset.state = 'delivered';
+    await wait(jitter(700)); if (id !== runId) return;
+    ticks.dataset.state = 'read';
+  }
+
+  function setInput(text: string) {
+    if (!inputEl) return;
     if (text) {
-      inputDisp.textContent = text;
-      inputDisp.style.color = '#111';
-      if (sendIcon) { sendIcon.style.display = 'flex'; }
-      if (camIcon)  { camIcon.style.display = 'none'; }
+      inputEl.textContent = text;
+      inputEl.style.color = '#111';
+      if (sendIcon) sendIcon.style.display = 'flex';
+      if (camIcon) camIcon.style.display = 'none';
     } else {
-      inputDisp.textContent = 'Mensaje';
-      inputDisp.style.color = '#9EA5AE';
-      if (sendIcon) { sendIcon.style.display = 'none'; }
-      if (camIcon)  { camIcon.style.display = 'block'; }
+      inputEl.textContent = 'Mensaje';
+      inputEl.style.color = '#9EA5AE';
+      if (sendIcon) sendIcon.style.display = 'none';
+      if (camIcon) camIcon.style.display = 'block';
     }
   }
 
-  function setActiveKey(key) {
-    document.querySelectorAll('.kb-key').forEach(k => k.classList.remove('active'));
+  function setActiveKey(key: string) {
+    document.querySelectorAll('.kb-key').forEach((k) => k.classList.remove('active'));
     if (key) {
       const el = document.querySelector(`[data-key="${key.toUpperCase()}"]`);
       if (el) el.classList.add('active');
     }
   }
 
-  function showCursor(show) {
-    if (!cursor) return;
-    cursor.style.display = show ? 'inline-block' : 'none';
+  async function clientTypes(text: string, id: number) {
+    if (cursor) cursor.style.display = 'inline-block';
+    await wait(jitter(900)); if (id !== runId) return;
+    for (let c = 1; c <= text.length; c++) {
+      setInput(text.slice(0, c));
+      setActiveKey(text[c - 1]);
+      await wait(45 + Math.random() * 65 + (Math.random() < 0.06 ? 220 : 0));
+      setActiveKey('');
+      if (id !== runId) return;
+    }
+    await wait(jitter(450)); if (id !== runId) return;
+    setInput('');
+    if (cursor) cursor.style.display = 'none';
   }
 
-  function reset() {
-    visibleCount = 0;
-    document.querySelectorAll('[data-msg]').forEach(el => { (el as HTMLElement).style.display = 'none'; });
+  async function playAudio(el: HTMLElement | null, id: number) {
+    const bars = el ? Array.from(el.querySelectorAll('[data-wavebar]')) as HTMLElement[] : [];
+    const counter = el && (el.querySelector('[data-audio-time]') as HTMLElement | null);
+    for (let b = 0; b < bars.length; b++) {
+      bars[b].style.background = '#128C7E';
+      if (counter) {
+        const secs = Math.floor(((b + 1) / bars.length) * 14);
+        counter.textContent = '0:' + String(secs).padStart(2, '0');
+      }
+      await wait(34);
+      if (id !== runId) return;
+    }
+  }
+
+  function resetChat() {
+    document.querySelectorAll('[data-msg]').forEach((el) => {
+      (el as HTMLElement).style.display = 'none';
+      (el as HTMLElement).style.animation = '';
+    });
+    const overlay = document.querySelector('[data-upload-overlay]') as HTMLElement | null;
+    if (overlay) { overlay.style.transition = ''; overlay.style.opacity = '1'; }
+    document.querySelectorAll('[data-wavebar]').forEach((b) => { (b as HTMLElement).style.background = '#A0A8A0'; });
+    const at = document.querySelector('[data-audio-time]') as HTMLElement | null;
+    if (at) at.textContent = '0:14';
+    const tr = document.querySelector('[data-transcript]') as HTMLElement | null;
+    if (tr) tr.style.display = 'none';
+    document.querySelectorAll('[data-ticks]').forEach((t) => { (t as HTMLElement).dataset.state = 'none'; });
+    if (typing) typing.style.display = 'none';
     setInput('');
     setActiveKey('');
-    showCursor(false);
-    showTyping(false);
-    orchestrate();
+    if (cursor) cursor.style.display = 'none';
+    setStatus('en línea');
+    if (msgs) msgs.scrollTop = 0;
   }
 
-  function orchestrate() {
-    if (visibleCount >= CHAT.length) {
-      timer = setTimeout(reset, 3500);
-      return;
-    }
-    const next = CHAT[visibleCount];
-    if (next.from === 'agent') {
-      showTyping(true);
-      const delay = Math.min((next.text?.length ?? 20) * 26 + 900, 3200);
-      timer = setTimeout(() => { showTyping(false); showMsg(visibleCount); visibleCount++; orchestrate(); }, delay);
-    } else if (next.type === 'audio') {
-      timer = setTimeout(() => { showMsg(visibleCount); visibleCount++; orchestrate(); }, 3200);
-    } else if (next.type === 'image') {
-      timer = setTimeout(() => { showMsg(visibleCount); visibleCount++; orchestrate(); }, 2200);
-    } else {
-      timer = setTimeout(() => { startClientTyping(next.text ?? ''); }, 1100);
-    }
-  }
-
-  function startClientTyping(target) {
-    let i = 0;
-    showCursor(true);
-    const charDelay = Math.max(50, Math.min(95, 1600 / Math.max(target.length, 1)));
-    charInterval = setInterval(() => {
-      i++;
-      const char = target[i - 1];
-      setInput(target.slice(0, i));
-      if (char) { setActiveKey(char); setTimeout(() => setActiveKey(''), Math.round(charDelay * 0.7)); }
-      if (i >= target.length) {
-        clearInterval(charInterval);
-        setTimeout(() => { setInput(''); setActiveKey(''); showCursor(false); showMsg(visibleCount); visibleCount++; orchestrate(); }, 600);
+  async function step(id: number) {
+    while (id === runId) {
+      if (i >= CHAT.length) {
+        await wait(4000); if (id !== runId) return;
+        if (msgs) {
+          msgs.style.animation = 'chat-fade 0.6s ease both';
+          await wait(650); if (id !== runId) { msgs.style.animation = ''; return; }
+          resetChat();
+          msgs.style.animation = '';
+        }
+        i = 0;
+        continue;
       }
-    }, charDelay);
+
+      const m = CHAT[i] as ChatEntry;
+
+      if (m.from === 'agent') {
+        await wait(jitter(800)); if (id !== runId) return;
+        setStatus('escribiendo…');
+        if (typing) { typing.style.display = 'flex'; scrollBottom(); }
+        const textLen = m.type === 'text' ? m.text.length : 20;
+        await wait(Math.min(textLen * 28 + 700, 3400)); if (id !== runId) return;
+        if (typing) typing.style.display = 'none';
+        setStatus('en línea');
+        showMsg(i);
+      } else if (m.type === 'audio') {
+        setStatus('grabando audio…');
+        await wait(jitter(2600)); if (id !== runId) return;
+        setStatus('en línea');
+        const el = showMsg(i);
+        progressTicks(el, id);
+        await wait(600); if (id !== runId) return;
+        await playAudio(el, id); if (id !== runId) return;
+        const tr = el && (el.querySelector('[data-transcript]') as HTMLElement | null);
+        if (tr) { tr.style.display = 'block'; scrollBottom(); }
+      } else if (m.type === 'image') {
+        await wait(jitter(1600)); if (id !== runId) return;
+        const el = showMsg(i);
+        progressTicks(el, id);
+        const overlay = el && (el.querySelector('[data-upload-overlay]') as HTMLElement | null);
+        const pct = el && (el.querySelector('[data-upload-pct]') as HTMLElement | null);
+        if (overlay && pct) {
+          let p = 0;
+          while (p < 100) {
+            p = Math.min(p + 4 + Math.floor(Math.random() * 9), 100);
+            pct.textContent = p + '%';
+            await wait(70); if (id !== runId) return;
+          }
+          overlay.style.transition = 'opacity 0.4s ease';
+          overlay.style.opacity = '0';
+        }
+      } else {
+        await clientTypes(m.text, id); if (id !== runId) return;
+        const el = showMsg(i);
+        progressTicks(el, id);
+      }
+
+      i++;
+      await wait(jitter(500)); if (id !== runId) return;
+    }
   }
 
-  orchestrate();
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting && !running) {
+        running = true;
+        i = 0;
+        resetChat();
+        runId++;
+        step(runId);
+      } else if (!e.isIntersecting && running) {
+        running = false;
+        runId++;
+      }
+    }
+  }, { threshold: 0.35 });
+  if (phone) io.observe(phone);
 })();
 </script>
