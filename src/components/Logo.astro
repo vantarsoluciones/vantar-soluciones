@@ -1,0 +1,23 @@
+---
+interface Props {
+  size?: number;
+  withWordmark?: boolean;
+}
+const { size = 30, withWordmark = true } = Astro.props;
+---
+<span style="display:inline-flex;align-items:center;gap:10px;">
+  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style={`width:${size}px;height:${size}px;flex-shrink:0;`}>
+    <path d="M12 14 L40 64 L68 14 L58.5 14 L40 47.5 L21.5 14 Z" fill="#EFEAE0"/>
+    <line x1="17" y1="23" x2="26" y2="23" stroke="#9A7C4A" stroke-width="1.8" stroke-linecap="round"/>
+    <circle cx="26" cy="23" r="2.4" fill="#9A7C4A"/>
+    <line x1="63" y1="23" x2="54" y2="23" stroke="#9A7C4A" stroke-width="1.8" stroke-linecap="round"/>
+    <circle cx="54" cy="23" r="2.4" fill="#9A7C4A"/>
+    <line x1="40" y1="53" x2="40" y2="60" stroke="#9A7C4A" stroke-width="1.8" stroke-linecap="round"/>
+    <circle cx="40" cy="60" r="2.4" fill="#9A7C4A"/>
+  </svg>
+  {withWordmark && (
+    <span style="font-family:var(--font-display);font-weight:600;font-size:1.25rem;color:var(--cream);letter-spacing:-0.01em;">
+      Vant<span style="color:var(--bronze);">Ar</span>
+    </span>
+  )}
+</span>
