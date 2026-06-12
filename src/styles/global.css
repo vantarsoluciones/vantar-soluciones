@@ -154,6 +154,59 @@ body {
 }
 .nav-anchor:hover { color: var(--cream); }
 
+/* ── Navbar: grupo desktop / hamburguesa / menú mobile ── */
+.nav-desktop { display: flex; align-items: center; gap: 32px; }
+
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 40px; height: 40px;
+  padding: 0; margin: 0;
+  background: none; border: none; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-burger span {
+  display: block;
+  width: 24px; height: 1.5px;
+  margin: 0 auto;
+  background: var(--cream);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(3.75px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { transform: translateY(-3.75px) rotate(-45deg); }
+
+.nav-mobile {
+  display: none;
+  position: fixed;
+  top: 74px; left: 0; right: 0;
+  z-index: 49;
+  background: rgba(8, 15, 30, 0.97);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line-strong);
+  transform: translateY(-14px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.3s;
+}
+.nav-mobile.open { transform: translateY(0); opacity: 1; visibility: visible; }
+.nav-mobile-inner { padding: 8px 32px 30px; }
+.nav-mobile-link {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 16px; font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--cream);
+  text-decoration: none;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--line);
+  transition: color 0.2s ease, padding-left 0.25s ease;
+}
+.nav-mobile-link:hover, .nav-mobile-link:active { color: var(--bronze-light); padding-left: 7px; }
+.nav-mobile-cta { width: 100%; justify-content: center; margin-top: 24px; }
+
 /* ── FAQ acordeón ── */
 .faq-item { border-bottom: 1px solid var(--line); }
 .faq-q {
@@ -195,14 +248,15 @@ body {
   .grid-2col, .grid-demo, .grid-3col, .grid-features { grid-template-columns: 1fr; }
   .grid-2col { gap: 32px; }
   .grid-demo { gap: 48px; }
-  .nav-links { display: none; }
+  /* el CTA y los links viven en el menú hamburguesa */
+  .nav-desktop { display: none; }
+  .nav-burger { display: flex; }
+  .nav-mobile { display: block; }
 }
 
 @media (max-width: 520px) {
-  /* en pantallas chicas el wordmark choca con el CTA del navbar: queda solo el isotipo */
   #vs-navbar { padding: 0 20px; }
-  #vs-navbar .logo-wordmark { display: none; }
-  #vs-navbar .btn-outline { padding: 9px 16px; font-size: 13px; }
+  .nav-mobile-inner { padding: 8px 20px 28px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

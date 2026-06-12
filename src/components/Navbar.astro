@@ -13,7 +13,8 @@ const NAV_LINKS = [
   <a href="#" style="text-decoration:none;" aria-label="VantAr, inicio">
     <Logo size={30} />
   </a>
-  <div style="display:flex;align-items:center;gap:32px;">
+
+  <div class="nav-desktop">
     <div class="nav-links">
       {NAV_LINKS.map(l => (
         <a href={l.href} class="nav-anchor">{l.label}</a>
@@ -23,22 +24,60 @@ const NAV_LINKS = [
       Solicitar demostración
     </a>
   </div>
+
+  <button id="vs-burger" class="nav-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="vs-mobile">
+    <span></span><span></span>
+  </button>
 </nav>
+
+<div id="vs-mobile" class="nav-mobile" aria-hidden="true">
+  <div class="nav-mobile-inner">
+    {NAV_LINKS.map(l => (
+      <a href={l.href} class="nav-mobile-link">{l.label}</a>
+    ))}
+    <a href={WA_LINK} target="_blank" rel="noopener noreferrer" class="btn-bronze nav-mobile-cta">
+      Solicitar demostración
+    </a>
+  </div>
+</div>
 
 <script>
   const nav = document.getElementById('vs-navbar');
-  window.addEventListener('scroll', () => {
+  const burger = document.getElementById('vs-burger');
+  const mobile = document.getElementById('vs-mobile');
+  let menuOpen = false;
+
+  function applyNavBg() {
     if (!nav) return;
-    if (window.scrollY > 32) {
-      nav.style.background = 'rgba(8,15,30,0.92)';
+    const solid = menuOpen || window.scrollY > 32;
+    if (solid) {
+      nav.style.background = 'rgba(8,15,30,0.94)';
       nav.style.backdropFilter = 'blur(14px)';
       (nav.style as any).webkitBackdropFilter = 'blur(14px)';
-      nav.style.boxShadow = '0 1px 0 rgba(154,124,74,0.25)';
+      nav.style.boxShadow = menuOpen ? 'none' : '0 1px 0 rgba(154,124,74,0.25)';
     } else {
       nav.style.background = 'transparent';
       nav.style.backdropFilter = '';
       (nav.style as any).webkitBackdropFilter = '';
       nav.style.boxShadow = '';
     }
-  }, { passive: true });
+  }
+
+  function setMenu(open: boolean) {
+    menuOpen = open;
+    burger?.classList.toggle('open', open);
+    mobile?.classList.toggle('open', open);
+    burger?.setAttribute('aria-expanded', String(open));
+    mobile?.setAttribute('aria-hidden', String(!open));
+    applyNavBg();
+  }
+
+  burger?.addEventListener('click', () => setMenu(!menuOpen));
+  mobile?.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => setMenu(false))
+  );
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900 && menuOpen) setMenu(false);
+  });
+  window.addEventListener('scroll', applyNavBg, { passive: true });
 </script>
