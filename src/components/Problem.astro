@@ -20,14 +20,14 @@ const LETTERS = ['a', 'b', 'c', 'd', 'e'];
       <div>
         {PAINS.map((pain, i) => (
           <div class={`reveal d${Math.min(i + 1, 4)}`} style={`display:flex;gap:20px;align-items:baseline;padding:18px 0;${i < PAINS.length - 1 ? 'border-bottom:1px solid rgba(239,234,224,0.07);' : ''}`}>
-            <span style="font-family:var(--font-display);font-style:italic;font-size:1rem;color:var(--bronze);flex-shrink:0;width:18px;">{LETTERS[i]}.</span>
+            <span style="font-family:var(--font-display);font-weight:600;font-size:1rem;color:var(--bronze);flex-shrink:0;width:18px;">{LETTERS[i]}.</span>
             <p style="font-family:var(--font-body);font-size:0.95rem;font-weight:300;color:var(--cream-60);line-height:1.75;margin:0;">{pain}</p>
           </div>
         ))}
       </div>
     </div>
 
-    <p class="reveal" style="font-family:var(--font-display);font-style:italic;font-size:clamp(1.05rem,2vw,1.3rem);color:var(--bronze-light);text-align:center;margin:64px auto 0;max-width:640px;">
+    <p class="reveal" style="font-family:var(--font-display);font-weight:500;font-size:clamp(1.05rem,2vw,1.3rem);letter-spacing:-0.01em;color:var(--bronze-light);text-align:center;margin:64px auto 0;max-width:640px;">
       Cada una de esas situaciones es un cliente (y honorarios) que se escapa.
     </p>
   </div>

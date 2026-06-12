@@ -22,7 +22,7 @@ const STEPS = [
         {STEPS.map((s, i) => (
           <div class={`reveal d${Math.min(i + 1, 4)}`}>
             <div style="width:11px;height:11px;border-radius:50%;background:var(--bg);border:1.5px solid var(--bronze);position:relative;z-index:1;"></div>
-            <div style="font-family:var(--font-display);font-style:italic;font-size:0.95rem;color:var(--bronze);margin-top:20px;">{s.n}.</div>
+            <div style="font-family:var(--font-display);font-weight:600;font-size:0.95rem;color:var(--bronze);margin-top:20px;">{s.n}.</div>
             <h3 style="font-family:var(--font-display);font-weight:600;font-size:1.05rem;color:var(--cream);margin:8px 0 0;">{s.title}</h3>
             <p style="font-family:var(--font-body);font-size:0.85rem;font-weight:300;color:var(--cream-60);line-height:1.65;margin:10px 0 0;">{s.desc}</p>
           </div>
@@ -30,7 +30,7 @@ const STEPS = [
       </div>
     </div>
 
-    <p class="reveal" style="font-family:var(--font-display);font-style:italic;font-size:1.05rem;color:var(--cream-60);text-align:center;margin:56px 0 0;">
+    <p class="reveal" style="font-family:var(--font-display);font-weight:500;font-size:1.05rem;letter-spacing:-0.01em;color:var(--cream-60);text-align:center;margin:56px 0 0;">
       Sin instalaciones complicadas de tu lado. Nos encargamos de todo.
     </p>
   </div>
