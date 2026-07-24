@@ -1,0 +1,70 @@
+---
+// TODO: reemplazar los monogramas por fotos reales cuando estén.
+// El marco .persona-foto acepta un <img> directamente.
+const PERSONAS = [
+  { inicial: 'F', nombre: 'Franco Leibrecht', cargo: 'Cofundador' },
+  { inicial: 'G', nombre: 'Gonzalo Maluccio', cargo: 'Cofundador' },
+];
+---
+<section id="equipo" class="section section-alt">
+  <div class="container">
+    <div class="label-sec reveal">Quiénes somos</div>
+
+    <div class="equipo-cols">
+      <div>
+        <h2 class="h-display sec-title reveal d1">
+          Detrás del sistema<br /><em>hay personas.</em>
+        </h2>
+        <p class="lead intro reveal d2">
+          Somos Franco y Gonzalo, licenciados en Administración y Comercialización.
+          Armamos VantAr para una sola industria: la jurídica. Eso nos deja conocer
+          el trabajo de un estudio de verdad: cómo llega una consulta, qué caso vale
+          la pena y qué necesita un abogado para decir que sí a una reunión.
+        </p>
+        <p class="frase reveal d3">
+          Vos resolvés en tu campo, nosotros en el nuestro.
+        </p>
+      </div>
+
+      <div class="equipo-grid reveal d2">
+        {PERSONAS.map((p) => (
+          <div class="persona">
+            <div class="persona-foto" aria-hidden="true">{p.inicial}</div>
+            <h3>{p.nombre}</h3>
+            <span>{p.cargo}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .equipo-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    margin-top: 44px;
+    align-items: start;
+  }
+  .intro {
+    margin-top: 24px;
+    max-width: 440px;
+  }
+  .frase {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.15rem;
+    color: var(--bronze-light);
+    line-height: 1.6;
+    margin: 28px 0 0;
+    max-width: 420px;
+  }
+
+  @media (max-width: 900px) {
+    .equipo-cols {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+</style>

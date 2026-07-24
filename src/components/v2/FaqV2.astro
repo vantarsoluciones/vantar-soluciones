@@ -1,0 +1,73 @@
+---
+const FAQS = [
+  {
+    q: '¿Cuánto cuesta?',
+    a: 'Lo conversamos en la reunión: depende del tamaño de tu estudio, el área en la que trabaja y lo que ya tenga armado. En 15 minutos te mostramos el circuito y te vas con el número claro.',
+  },
+  {
+    q: '¿Qué necesito para arrancar?',
+    a: 'Una reunión para relevar cómo trabaja tu estudio: qué casos toma, qué preguntas hace, cómo decide cuáles valen la pena. Con eso armamos el asistente, la publicidad y el resto del circuito. No necesitás tener nada técnico.',
+  },
+  {
+    q: '¿En cuánto tiempo está andando?',
+    a: 'Las primeras semanas las dedicamos a armar el asistente a la medida del estudio y a poner en marcha las campañas. Después funciona solo, y lo seguimos ajustando con lo que va pasando.',
+  },
+  {
+    q: '¿Reemplaza a mi secretaria?',
+    a: 'No: la potencia. Funciona como una secretaria virtual que atiende lo que hoy no llega a atenderse (las noches, los fines de semana, los picos) y le deja a tu equipo la entrevista hecha y la reunión agendada. Las personas de tu estudio siguen siendo las que atienden a las personas.',
+  },
+  {
+    q: '¿Trabajan con cualquier rubro?',
+    a: 'No. Solo trabajamos con abogados y estudios jurídicos. Por eso el asistente entrevista con criterio jurídico y la publicidad apunta a gente que ya está buscando un abogado.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQS.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+<section id="faq" class="section section-alt">
+  <div class="container faq-container">
+    <h2 class="label-sec reveal">Preguntas frecuentes</h2>
+
+    <div class="faq-lista">
+      {FAQS.map((f, i) => (
+        <div class={`faq-item reveal d${Math.min(i + 1, 4)}`}>
+          <button class="faq-q" aria-expanded="false">
+            {f.q}
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-a">
+            <div><p>{f.a}</p></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-container {
+    max-width: 820px;
+  }
+  .faq-lista {
+    margin-top: 44px;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach((item) => {
+    const btn = item.querySelector('.faq-q');
+    btn?.addEventListener('click', () => {
+      const open = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+</script>

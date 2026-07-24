@@ -1,0 +1,327 @@
+---
+// Demo del asistente en modo VIDEO: la conversación se reproduce sola cuando el
+// teléfono entra al viewport (y se pausa al salir), con la ficha del caso como
+// cierre. La variante interactiva con chips vive en AsistenteDemo.astro;
+// se alterna cambiando el import en AbogadosPage.astro.
+const CAPACIDADES = [
+  'Atiende al instante, las 24 horas, los 365 días',
+  'Entiende audios, fotos y documentos',
+  'Entrevista con criterio según el tipo de caso',
+  'Califica y prioriza cada consulta con tus reglas',
+  'Agenda la reunión en tu calendario y la recuerda',
+  'Habla con el tono de tu estudio',
+];
+---
+<section id="asistente" class="section">
+  <div class="container">
+    <div class="label-sec reveal">El asistente, en vivo</div>
+
+    <div class="grid-demo">
+      <div>
+        <h2 class="h-display sec-title reveal d1">
+          No te lo contamos.<br /><em>Miralo atender.</em>
+        </h2>
+        <p class="lead intro reveal d2">
+          Esto es lo que pasa cuando un cliente escribe al WhatsApp de tu estudio
+          un sábado a la noche: el asistente atiende al momento, entrevista,
+          entiende el audio y la foto que le mandan, y deja la reunión agendada.
+          Al final, mirá lo que te llega a vos.
+        </p>
+
+        <ul class="tick-list capacidades reveal d3">
+          {CAPACIDADES.map((c) => <li>{c}</li>)}
+        </ul>
+
+        <p class="note aclaracion reveal d4">
+          La conversación es un ejemplo. El asistente real se arma a la medida de
+          cada estudio: sus preguntas, sus criterios, su tono.
+        </p>
+      </div>
+
+      <div>
+        <div class="demo-phone reveal d2" id="demo-phone">
+          <div class="demo-screen">
+
+            <div class="demo-wa-header">
+              <div class="demo-wa-avatar">
+                <svg viewBox="8 8 80 80" fill="none" aria-hidden="true">
+                  <path d="M16 20 L48 76 L80 20 L62 20 L48 51 L34 20 Z" fill="#EFEAE0"/>
+                </svg>
+              </div>
+              <div class="demo-wa-info">
+                <p class="demo-wa-nombre">Asistente del estudio</p>
+                <p id="demo-status" class="demo-wa-estado">en línea</p>
+              </div>
+            </div>
+
+            <div class="demo-msgs" id="demo-msgs" aria-live="polite">
+              <div class="demo-date-chip">Hoy</div>
+              <div class="demo-chip-sys">Conversación de ejemplo · sábado 23:47</div>
+            </div>
+
+            <div class="demo-input-bar" aria-hidden="true">
+              <div class="demo-input-field">
+                <span class="demo-input-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5c1 1.2 2.2 1.8 3.5 1.8s2.5-.6 3.5-1.8" stroke-linecap="round"/><circle cx="9" cy="10" r="0.8" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="0.8" fill="currentColor" stroke="none"/></svg>
+                </span>
+                Mensaje
+              </div>
+              <span class="demo-input-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              </span>
+              <span class="demo-input-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke-linecap="round"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <button class="demo-replay" id="demo-replay" type="button">Volver a ver la conversación</button>
+
+        <div class="ficha" id="demo-ficha" aria-hidden="true">
+          <div class="ficha-label">Lo que te llega a vos</div>
+          <dl>
+            <div class="ficha-row"><dt>Caso</dt><dd>Accidente de moto</dd></div>
+            <div class="ficha-row"><dt>Lesiones</dt><dd>Sí (atención en guardia)</dd></div>
+            <div class="ficha-row"><dt>Documentación</dt><dd>Foto del vehículo ✓</dd></div>
+            <div class="ficha-row"><dt>Entrevista</dt><dd>Completa ✓</dd></div>
+            <div class="ficha-row"><dt>Prioridad</dt><dd class="hot">Alta</dd></div>
+            <div class="ficha-row"><dt>Reunión</dt><dd>Martes 10:30, en tu calendario</dd></div>
+          </dl>
+          <p class="ficha-nota">
+            Resumido y priorizado, con la reunión ya en tu calendario. Así llega
+            cada caso, sin que nadie de tu equipo toque nada.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .intro {
+    margin-top: 24px;
+    max-width: 420px;
+  }
+  .capacidades {
+    margin-top: 34px;
+    max-width: 420px;
+  }
+  .aclaracion {
+    margin-top: 30px;
+    max-width: 400px;
+  }
+  .ficha {
+    margin-top: 26px;
+  }
+</style>
+
+<script>
+  const msgsEl = document.getElementById('demo-msgs');
+  const statusEl = document.getElementById('demo-status');
+  const fichaEl = document.getElementById('demo-ficha');
+  const phoneEl = document.getElementById('demo-phone');
+  const replayBtn = document.getElementById('demo-replay');
+
+  const WAVE = [5, 9, 14, 19, 24, 21, 26, 22, 17, 23, 26, 20, 15, 11, 18, 22, 16, 12, 8, 11, 14, 9, 6, 4];
+
+  // Guion del video. `d` = pausa (ms) después de mostrar el ítem.
+  const SCRIPT = [
+    { t: 'client', text: 'Hola, tuve un accidente con la moto anoche', d: 1500 },
+    { t: 'typing', d: 1500 },
+    { t: 'agent', text: 'Hola, soy el asistente del estudio. Lamento lo que te pasó. Te hago unas preguntas breves así un abogado ve tu caso cuanto antes.', d: 1100 },
+    { t: 'typing', d: 1400 },
+    { t: 'agent', text: '¿Hubo personas lesionadas o solo daños materiales?', d: 1600 },
+    { t: 'audio', dur: '0:11', d: 2100 },
+    { t: 'typing', d: 2200 },
+    { t: 'agent', text: 'Gracias por el audio. Entiendo: te lastimaste la rodilla y te atendieron en la guardia. ¿Tenés fotos del vehículo o la denuncia? Mandalas por acá cuando quieras.', d: 1700 },
+    { t: 'photo', d: 2100 },
+    { t: 'typing', d: 1900 },
+    { t: 'agent', text: 'Perfecto, ya tengo todo. Tu caso queda calificado y priorizado para el equipo.', d: 1100 },
+    { t: 'typing', d: 1300 },
+    { t: 'agent', text: '¿Te queda bien el martes a las 10:30 para hablar con un abogado del estudio?', d: 1700 },
+    { t: 'client', text: 'Sí, martes 10:30 me queda bien', d: 1500 },
+    { t: 'typing', d: 1500 },
+    { t: 'agent', text: 'Listo, quedó agendado: martes 10:30 📅 Un día antes te lo recuerdo por acá. Si querés sumar algo más, mandalo por este chat.', d: 1400 },
+    { t: 'ficha', d: 9000 },
+  ];
+
+  let i = 0;
+  let timer = null;
+  let paused = true;
+  let started = false;
+  let completada = false;
+
+  const hora = () => {
+    const d = new Date();
+    return d.getHours() + ':' + String(d.getMinutes()).padStart(2, '0');
+  };
+
+  function scrollBottom() {
+    if (msgsEl) msgsEl.scrollTop = msgsEl.scrollHeight;
+  }
+
+  function clientRow(inner) {
+    const row = document.createElement('div');
+    row.className = 'bubble-row from-client';
+    const b = document.createElement('div');
+    b.className = 'bubble';
+    b.appendChild(inner);
+    const meta = document.createElement('div');
+    meta.className = 'bubble-meta';
+    meta.innerHTML =
+      '<span>' + hora() + '</span>' +
+      '<span data-ticks data-state="sent" style="display:inline-flex;align-items:center;">' +
+      '<svg width="16" height="11" viewBox="0 0 16 11" fill="none">' +
+      '<path class="tick-1" d="M1 6L4 9L10 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path class="tick-2" d="M6 6L9 9L15 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity:0;"/>' +
+      '</svg></span>';
+    b.appendChild(meta);
+    row.appendChild(b);
+    msgsEl.appendChild(row);
+    scrollBottom();
+    const ticks = meta.querySelector('[data-ticks]');
+    setTimeout(() => ticks && ticks.setAttribute('data-state', 'delivered'), 500);
+    setTimeout(() => ticks && ticks.setAttribute('data-state', 'read'), 1000);
+  }
+
+  function addClientText(text) {
+    clientRow(document.createTextNode(text));
+  }
+
+  function addClientAudio(dur) {
+    const wrap = document.createElement('div');
+    wrap.className = 'bubble-audio';
+    const play = document.createElement('div');
+    play.className = 'audio-play';
+    play.innerHTML = '<svg width="11" height="13" viewBox="0 0 11 13" fill="white"><path d="M1 1l9 5.5L1 12V1z"/></svg>';
+    const wave = document.createElement('div');
+    wave.className = 'audio-wave';
+    WAVE.forEach((h) => {
+      const bar = document.createElement('span');
+      bar.style.height = h + 'px';
+      wave.appendChild(bar);
+    });
+    const time = document.createElement('span');
+    time.className = 'audio-time';
+    time.textContent = dur;
+    wrap.appendChild(play);
+    wrap.appendChild(wave);
+    wrap.appendChild(time);
+    clientRow(wrap);
+  }
+
+  function addClientPhoto() {
+    const img = document.createElement('div');
+    img.className = 'bubble-img img-moto';
+    img.setAttribute('role', 'img');
+    img.setAttribute('aria-label', 'Foto del vehículo dañado');
+    const overlay = document.createElement('div');
+    overlay.className = 'img-upload-overlay';
+    img.appendChild(overlay);
+    clientRow(img);
+    setTimeout(() => overlay.remove(), 1100);
+  }
+
+  function addAgent(text) {
+    const row = document.createElement('div');
+    row.className = 'bubble-row from-agent';
+    const b = document.createElement('div');
+    b.className = 'bubble';
+    b.appendChild(document.createTextNode(text));
+    const meta = document.createElement('div');
+    meta.className = 'bubble-meta';
+    meta.innerHTML = '<span>' + hora() + '</span>';
+    b.appendChild(meta);
+    row.appendChild(b);
+    msgsEl.appendChild(row);
+    scrollBottom();
+  }
+
+  let typingRow = null;
+  function showTyping(on) {
+    if (statusEl) statusEl.textContent = on ? 'escribiendo…' : 'en línea';
+    if (on && !typingRow) {
+      typingRow = document.createElement('div');
+      typingRow.className = 'bubble-row from-agent typing-row';
+      typingRow.innerHTML =
+        '<div class="bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>';
+      msgsEl.appendChild(typingRow);
+      scrollBottom();
+    } else if (!on && typingRow) {
+      typingRow.remove();
+      typingRow = null;
+    }
+  }
+
+  function showFicha() {
+    fichaEl.classList.add('show');
+    fichaEl.setAttribute('aria-hidden', 'false');
+    replayBtn.classList.add('show');
+    if (!completada) {
+      completada = true;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'demo_completada' });
+    }
+  }
+
+  function restart() {
+    i = 0;
+    showTyping(false);
+    msgsEl.querySelectorAll('.bubble-row').forEach((r) => r.remove());
+    // la ficha queda visible una vez mostrada: es el remate, no hace falta esconderla
+    step();
+  }
+
+  function step() {
+    if (paused) return;
+    if (i >= SCRIPT.length) {
+      restart();
+      return;
+    }
+    const s = SCRIPT[i];
+    i++;
+    if (s.t === 'client') addClientText(s.text);
+    else if (s.t === 'audio') addClientAudio(s.dur);
+    else if (s.t === 'photo') addClientPhoto();
+    else if (s.t === 'typing') showTyping(true);
+    else if (s.t === 'agent') { showTyping(false); addAgent(s.text); }
+    else if (s.t === 'ficha') showFicha();
+    timer = setTimeout(step, s.d);
+  }
+
+  function pause() {
+    paused = true;
+    if (timer) { clearTimeout(timer); timer = null; }
+  }
+
+  function resume() {
+    if (!paused) return;
+    paused = false;
+    timer = setTimeout(step, 600);
+  }
+
+  replayBtn?.addEventListener('click', () => {
+    pause();
+    paused = false;
+    restart();
+  });
+
+  // Arranca al entrar al viewport, se pausa al salir
+  if (phoneEl && msgsEl) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            started = true;
+            resume();
+          } else if (started) {
+            pause();
+          }
+        }
+      },
+      { threshold: 0.35 }
+    );
+    io.observe(phoneEl);
+  }
+</script>

@@ -1,0 +1,91 @@
+---
+// Página de gracias post-agendado: es la conversión primaria de Google Ads.
+// Dispara `reunion_agendada` en dataLayer al cargar. noindex y fuera del sitemap.
+import LayoutV2 from '../../layouts/LayoutV2.astro';
+import Logo from '../../components/Logo.astro';
+import { WA_LINK } from '../../components/v2/config';
+---
+<LayoutV2
+  title="Reunión agendada | VantAr"
+  description="Tu reunión con VantAr quedó agendada."
+  noindex={true}
+>
+  <main class="gracias">
+    <div class="gracias-inner">
+      <a href="/abogados" class="gracias-logo" aria-label="VantAr">
+        <Logo size={34} />
+      </a>
+      <h1 class="h-display gracias-titulo">
+        Listo, la reunión <em>quedó agendada.</em>
+      </h1>
+      <p class="gracias-texto">
+        Te llega la confirmación con el enlace por correo. Son 15 minutos:
+        te mostramos el circuito completo andando y vemos si tiene sentido
+        para tu estudio.
+      </p>
+      <p class="gracias-nota">
+        ¿Preferís adelantar algo o cambiar el horario? Escribinos por WhatsApp.
+      </p>
+      <div class="gracias-acciones">
+        <a href={WA_LINK} data-loc="gracias" target="_blank" rel="noopener noreferrer" class="btn-outline">
+          Escribinos por WhatsApp
+        </a>
+        <a href="/abogados" class="nav-anchor gracias-volver">Volver a la página</a>
+      </div>
+    </div>
+  </main>
+
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'reunion_agendada' });
+  </script>
+</LayoutV2>
+
+<style>
+  .gracias {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 22px;
+  }
+  .gracias-inner {
+    max-width: 560px;
+    text-align: center;
+  }
+  .gracias-logo {
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 36px;
+  }
+  .gracias-titulo {
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
+  }
+  .gracias-texto {
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    font-weight: 300;
+    color: var(--cream-60);
+    line-height: 1.85;
+    margin: 24px 0 0;
+  }
+  .gracias-nota {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--cream-40);
+    line-height: 1.8;
+    margin: 18px 0 0;
+  }
+  .gracias-acciones {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  .gracias-volver {
+    font-size: 13px;
+    align-self: center;
+  }
+</style>

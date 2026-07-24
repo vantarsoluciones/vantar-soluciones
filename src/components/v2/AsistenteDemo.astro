@@ -1,0 +1,342 @@
+---
+// Demo INTERACTIVA del asistente: el visitante contesta como el cliente con
+// chips de respuesta y al final ve la ficha del caso que recibe el abogado.
+// La variante de auto-reproducción vive en AsistenteDemoVideo.astro.
+const CAPACIDADES = [
+  'Atiende al instante, las 24 horas, los 365 días',
+  'Entiende audios, fotos y documentos',
+  'Entrevista con criterio según el tipo de caso',
+  'Califica y prioriza cada consulta con tus reglas',
+  'Agenda la reunión en tu calendario y la recuerda',
+  'Habla con el tono de tu estudio',
+];
+---
+<section id="asistente" class="section">
+  <div class="container">
+    <div class="label-sec reveal">El asistente, en vivo</div>
+
+    <div class="grid-demo">
+      <div>
+        <h2 class="h-display sec-title reveal d1">
+          No te lo contamos.<br /><em>Contestale vos.</em>
+        </h2>
+        <p class="lead intro reveal d2">
+          Este es el asistente que atiende el WhatsApp de tu estudio. Jugá el papel
+          del cliente: elegí las respuestas en el teléfono y mirá cómo entrevista,
+          califica y agenda. Al final, fijate lo que te llega a vos.
+        </p>
+
+        <ul class="tick-list capacidades reveal d3">
+          {CAPACIDADES.map((c) => <li>{c}</li>)}
+        </ul>
+
+        <p class="note aclaracion reveal d4">
+          La conversación es un ejemplo. El asistente real se arma a la medida de
+          cada estudio: sus preguntas, sus criterios, su tono.
+        </p>
+      </div>
+
+      <div>
+        <div class="demo-phone reveal d2">
+          <div class="demo-screen">
+
+            <div class="demo-wa-header">
+              <div class="demo-wa-avatar">
+                <svg viewBox="8 8 80 80" fill="none" aria-hidden="true">
+                  <path d="M16 20 L48 76 L80 20 L62 20 L48 51 L34 20 Z" fill="#EFEAE0"/>
+                </svg>
+              </div>
+              <div class="demo-wa-info">
+                <p class="demo-wa-nombre">Asistente del estudio</p>
+                <p id="demo-status" class="demo-wa-estado">en línea</p>
+              </div>
+            </div>
+
+            <div class="demo-msgs" id="demo-msgs" aria-live="polite">
+              <div class="demo-date-chip">Hoy</div>
+              <div class="demo-chip-sys">Demo interactiva · contestá como si fueras el cliente</div>
+            </div>
+
+            <div class="demo-chips" id="demo-chips"></div>
+          </div>
+        </div>
+
+        <div class="ficha" id="demo-ficha" aria-hidden="true">
+          <div class="ficha-label">Lo que te llega a vos</div>
+          <dl>
+            <div class="ficha-row"><dt>Caso</dt><dd id="ficha-caso">…</dd></div>
+            <div class="ficha-row"><dt>Lesiones</dt><dd id="ficha-lesiones">…</dd></div>
+            <div class="ficha-row"><dt>Documentación</dt><dd id="ficha-docs">…</dd></div>
+            <div class="ficha-row"><dt>Entrevista</dt><dd>Completa ✓</dd></div>
+            <div class="ficha-row"><dt>Prioridad</dt><dd class="hot" id="ficha-prioridad">…</dd></div>
+            <div class="ficha-row"><dt>Reunión</dt><dd id="ficha-reunion">…</dd></div>
+          </dl>
+          <p class="ficha-nota">
+            Resumido y priorizado, con la reunión ya en tu calendario. Así llega
+            cada caso, sin que nadie de tu equipo toque nada.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .intro {
+    margin-top: 24px;
+    max-width: 420px;
+  }
+  .capacidades {
+    margin-top: 34px;
+    max-width: 420px;
+  }
+  .aclaracion {
+    margin-top: 30px;
+    max-width: 400px;
+  }
+  .ficha {
+    margin-top: 26px;
+  }
+</style>
+
+<script>
+  const msgsEl = document.getElementById('demo-msgs');
+  const chipsEl = document.getElementById('demo-chips');
+  const statusEl = document.getElementById('demo-status');
+  const fichaEl = document.getElementById('demo-ficha');
+
+  const FLOW = [
+    {
+      chips: [
+        { t: 'Hola, tuve un accidente con la moto anoche', caso: 'Accidente de moto' },
+        { t: 'Me chocaron el auto y el seguro no responde', caso: 'Accidente de auto' },
+      ],
+    },
+    {
+      agent: [
+        'Hola, soy el asistente del estudio. Lamento lo que te pasó. Te hago unas preguntas breves así un abogado ve tu caso cuanto antes.',
+        '¿Hubo personas lesionadas o solo daños materiales?',
+      ],
+      chips: [
+        { t: 'Me lastimé la rodilla, me atendieron en la guardia', lesiones: true },
+        { t: 'Por suerte solo daños materiales', lesiones: false },
+      ],
+    },
+    {
+      agent: [
+        'Entiendo, gracias. ¿Hiciste la denuncia? Si tenés fotos del vehículo o algún papel, mandalos por acá cuando quieras (también podés mandar audios).',
+      ],
+      chips: [
+        { t: '📷 Mandar una foto del vehículo', img: true, docs: 'Foto recibida ✓' },
+        { t: 'La denuncia la tengo, la mando después', docs: 'Denuncia (a enviar)' },
+      ],
+    },
+    {
+      agent: [
+        'Perfecto, con esto ya puedo pasarle tu caso al equipo, priorizado.',
+        '¿Te queda bien el martes a las 10:30 para hablar con un abogado del estudio?',
+      ],
+      chips: [
+        { t: 'Sí, martes 10:30 me queda bien', hora: '10:30' },
+        {
+          t: 'Mejor a la tarde',
+          hora: '16:00',
+          agent: [
+            'De acuerdo, entonces martes 16:00 📅 Un día antes te lo recuerdo por acá. Si querés sumar fotos, audios o documentos, mandalos cuando quieras.',
+          ],
+        },
+      ],
+    },
+    {
+      agent: [
+        'Listo, quedó agendado para el martes 10:30 📅 Un día antes te lo recuerdo por acá. Si querés sumar fotos, audios o documentos, mandalos cuando quieras.',
+      ],
+      end: true,
+    },
+  ];
+
+  const datos = { caso: '', lesiones: false, docs: '', hora: '' };
+  let step = 0;
+
+  const hora = () => {
+    const d = new Date();
+    return d.getHours() + ':' + String(d.getMinutes()).padStart(2, '0');
+  };
+
+  function scrollBottom() {
+    if (msgsEl) msgsEl.scrollTop = msgsEl.scrollHeight;
+  }
+
+  function addClient(chip) {
+    const row = document.createElement('div');
+    row.className = 'bubble-row from-client';
+    const b = document.createElement('div');
+    b.className = 'bubble';
+    if (chip.img) {
+      const img = document.createElement('div');
+      img.className = 'bubble-img ' + (datos.caso === 'Accidente de auto' ? 'img-auto' : 'img-moto');
+      img.setAttribute('role', 'img');
+      img.setAttribute('aria-label', 'Foto del vehículo dañado');
+      b.appendChild(img);
+    } else {
+      b.appendChild(document.createTextNode(chip.t));
+    }
+    const meta = document.createElement('div');
+    meta.className = 'bubble-meta';
+    meta.innerHTML =
+      '<span>' + hora() + '</span>' +
+      '<span data-ticks data-state="sent" style="display:inline-flex;align-items:center;">' +
+      '<svg width="16" height="11" viewBox="0 0 16 11" fill="none">' +
+      '<path class="tick-1" d="M1 6L4 9L10 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path class="tick-2" d="M6 6L9 9L15 1" stroke="#9AA5AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity:0;"/>' +
+      '</svg></span>';
+    b.appendChild(meta);
+    row.appendChild(b);
+    msgsEl.appendChild(row);
+    scrollBottom();
+    const ticks = meta.querySelector('[data-ticks]');
+    setTimeout(() => ticks && ticks.setAttribute('data-state', 'delivered'), 500);
+    setTimeout(() => ticks && ticks.setAttribute('data-state', 'read'), 1100);
+  }
+
+  function addAgent(text) {
+    const row = document.createElement('div');
+    row.className = 'bubble-row from-agent';
+    const b = document.createElement('div');
+    b.className = 'bubble';
+    b.appendChild(document.createTextNode(text));
+    const meta = document.createElement('div');
+    meta.className = 'bubble-meta';
+    meta.innerHTML = '<span>' + hora() + '</span>';
+    b.appendChild(meta);
+    row.appendChild(b);
+    msgsEl.appendChild(row);
+    scrollBottom();
+  }
+
+  let typingRow = null;
+  function showTyping(on) {
+    if (statusEl) statusEl.textContent = on ? 'escribiendo…' : 'en línea';
+    if (on && !typingRow) {
+      typingRow = document.createElement('div');
+      typingRow.className = 'bubble-row from-agent typing-row';
+      typingRow.innerHTML =
+        '<div class="bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>';
+      msgsEl.appendChild(typingRow);
+      scrollBottom();
+    } else if (!on && typingRow) {
+      typingRow.remove();
+      typingRow = null;
+    }
+  }
+
+  let yaToco = false;
+  const ICONO_ENVIAR =
+    '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>';
+
+  function renderChips(chips, label) {
+    chipsEl.innerHTML = '';
+    chipsEl.classList.toggle('pulse', !yaToco);
+    if (label) {
+      const l = document.createElement('div');
+      l.className = 'demo-chips-label';
+      l.textContent = label;
+      chipsEl.appendChild(l);
+    }
+    chips.forEach((chip) => {
+      const btn = document.createElement('button');
+      btn.className = 'demo-chip';
+      btn.type = 'button';
+      btn.innerHTML = ICONO_ENVIAR + '<span></span>';
+      btn.querySelector('span').textContent = chip.t;
+      btn.addEventListener('click', () => onChip(chip));
+      chipsEl.appendChild(btn);
+    });
+    // el alto de la barra de chips cambia y puede tapar el último mensaje
+    requestAnimationFrame(scrollBottom);
+  }
+
+  function playAgent(msgs, done) {
+    let i = 0;
+    const next = () => {
+      if (i >= msgs.length) {
+        showTyping(false);
+        done();
+        return;
+      }
+      showTyping(true);
+      setTimeout(() => {
+        showTyping(false);
+        addAgent(msgs[i]);
+        i++;
+        setTimeout(next, 350);
+      }, i === 0 ? 900 : 1100);
+    };
+    next();
+  }
+
+  function onChip(chip) {
+    yaToco = true;
+    chipsEl.classList.remove('pulse');
+    if (chip.caso) datos.caso = chip.caso;
+    if ('lesiones' in chip) datos.lesiones = chip.lesiones;
+    if (chip.docs) datos.docs = chip.docs;
+    if (chip.hora) datos.hora = chip.hora;
+
+    chipsEl.innerHTML = '';
+    addClient(chip);
+    step++;
+    const s = FLOW[step];
+    if (!s) return;
+    const msgs = chip.agent || s.agent || [];
+    setTimeout(() => {
+      playAgent(msgs, () => {
+        if (s.end || chip.agent) {
+          finish();
+        } else if (s.chips) {
+          renderChips(s.chips, 'Tocá tu respuesta 👇');
+        }
+      });
+    }, 700);
+  }
+
+  function finish() {
+    document.getElementById('ficha-caso').textContent = datos.caso || 'Accidente de tránsito';
+    document.getElementById('ficha-lesiones').textContent = datos.lesiones ? 'Sí (atención en guardia)' : 'No';
+    document.getElementById('ficha-docs').textContent = datos.docs || '…';
+    document.getElementById('ficha-prioridad').textContent = datos.lesiones ? 'Alta' : 'Media';
+    document.getElementById('ficha-reunion').textContent = 'Martes ' + (datos.hora || '10:30') + ', en tu calendario';
+    fichaEl.classList.add('show');
+    fichaEl.setAttribute('aria-hidden', 'false');
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'demo_completada' });
+
+    chipsEl.innerHTML = '';
+    const done = document.createElement('div');
+    done.className = 'demo-chips-label';
+    done.textContent = 'Entrevista completa, mirá la ficha que recibís';
+    chipsEl.appendChild(done);
+    const restart = document.createElement('button');
+    restart.className = 'demo-restart';
+    restart.type = 'button';
+    restart.textContent = 'Probar de nuevo';
+    restart.addEventListener('click', reset);
+    chipsEl.appendChild(restart);
+  }
+
+  function reset() {
+    step = 0;
+    datos.caso = '';
+    datos.lesiones = false;
+    datos.docs = '';
+    datos.hora = '';
+    msgsEl.querySelectorAll('.bubble-row').forEach((r) => r.remove());
+    fichaEl.classList.remove('show');
+    fichaEl.setAttribute('aria-hidden', 'true');
+    renderChips(FLOW[0].chips, 'Tocá una respuesta y contestá como el cliente 👇');
+  }
+
+  if (msgsEl && chipsEl) {
+    renderChips(FLOW[0].chips, 'Tocá una respuesta y contestá como el cliente 👇');
+  }
+</script>

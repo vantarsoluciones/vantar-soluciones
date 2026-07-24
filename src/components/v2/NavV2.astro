@@ -1,0 +1,110 @@
+---
+import Logo from '../Logo.astro';
+import { WA_LINK } from './config';
+
+const NAV_LINKS = [
+  { href: '#como-funciona', label: 'Cómo funciona' },
+  { href: '#asistente',     label: 'El asistente' },
+  { href: '#equipo',        label: 'Quiénes somos' },
+  { href: '#faq',           label: 'FAQ' },
+];
+---
+<nav id="v2-navbar" class="v2-navbar">
+  <a href="#" class="logo-link" aria-label="VantAr, inicio">
+    <Logo size={30} />
+  </a>
+
+  <div class="nav-desktop">
+    <div class="nav-links">
+      {NAV_LINKS.map(l => (
+        <a href={l.href} class="nav-anchor">{l.label}</a>
+      ))}
+    </div>
+    <a href="#agendar" class="btn-outline">
+      Agendá 15 minutos
+    </a>
+  </div>
+
+  <button id="v2-burger" class="nav-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="v2-mobile">
+    <span></span><span></span>
+  </button>
+</nav>
+
+<div id="v2-mobile" class="nav-mobile" aria-hidden="true">
+  <div class="nav-mobile-inner">
+    {NAV_LINKS.map(l => (
+      <a href={l.href} class="nav-mobile-link">{l.label}</a>
+    ))}
+    <a href="#agendar" class="btn-bronze nav-mobile-cta">
+      Agendá una reunión de 15 minutos
+    </a>
+    <a href={WA_LINK} data-loc="nav-mobile" target="_blank" rel="noopener noreferrer" class="btn-outline nav-mobile-cta nav-mobile-wa">
+      Escribinos por WhatsApp
+    </a>
+  </div>
+</div>
+
+<style>
+  .v2-navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    padding: 0 32px;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    transition: background 0.35s ease, box-shadow 0.35s ease;
+  }
+  .logo-link {
+    text-decoration: none;
+  }
+  .nav-mobile-wa {
+    margin-top: 12px;
+  }
+</style>
+
+<script>
+  const nav = document.getElementById('v2-navbar');
+  const burger = document.getElementById('v2-burger');
+  const mobile = document.getElementById('v2-mobile');
+  let menuOpen = false;
+
+  function applyNavBg() {
+    if (!nav) return;
+    const solid = menuOpen || window.scrollY > 32;
+    if (solid) {
+      nav.style.background = 'rgba(8,15,30,0.94)';
+      nav.style.backdropFilter = 'blur(14px)';
+      (nav.style as any).webkitBackdropFilter = 'blur(14px)';
+      nav.style.boxShadow = menuOpen ? 'none' : '0 1px 0 rgba(154,124,74,0.25)';
+    } else {
+      nav.style.background = 'transparent';
+      nav.style.backdropFilter = '';
+      (nav.style as any).webkitBackdropFilter = '';
+      nav.style.boxShadow = '';
+    }
+  }
+
+  function setMenu(open: boolean) {
+    menuOpen = open;
+    burger?.classList.toggle('open', open);
+    mobile?.classList.toggle('open', open);
+    burger?.setAttribute('aria-expanded', String(open));
+    mobile?.setAttribute('aria-hidden', String(!open));
+    applyNavBg();
+  }
+
+  burger?.addEventListener('click', () => setMenu(!menuOpen));
+  mobile?.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => setMenu(false))
+  );
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900 && menuOpen) setMenu(false);
+  });
+  window.addEventListener('scroll', applyNavBg, { passive: true });
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menuOpen) setMenu(false);
+  });
+</script>

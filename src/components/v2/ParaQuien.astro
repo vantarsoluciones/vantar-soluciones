@@ -1,0 +1,42 @@
+---
+const SI = [
+  'Estudios que viven de casos donde uno o dos cierres al mes justifican todo lo demás: accidentes, laboral, daños.',
+  'Estudios donde las consultas llegan a toda hora y no siempre hay quien las atienda.',
+  'Abogados que quieren dedicar sus horas a ejercer, no a filtrar consultas que no cierran.',
+];
+const NO = [
+  'Si buscás un software de gestión de expedientes: eso no somos, y hay buenas herramientas para eso.',
+  'Si tu estudio no atiende consultas de particulares por WhatsApp ni quiere hacerlo.',
+  'Si esperás resultados garantizados de un día para otro: trabajamos con método, no con promesas.',
+];
+---
+<section class="section">
+  <div class="container">
+    <div class="label-sec reveal">Para quién</div>
+
+    <h2 class="h-display sec-title-lg reveal d1">
+      Para quién es <em>(y para quién no).</em>
+    </h2>
+
+    <div class="pq-grid">
+      <div class="pq-col si reveal d1">
+        <h3>Es para tu estudio si…</h3>
+        <ul class="tick-list">
+          {SI.map((t) => <li>{t}</li>)}
+        </ul>
+      </div>
+      <div class="pq-col no reveal d2">
+        <h3>No es para vos si…</h3>
+        <ul class="tick-list lista-no">
+          {NO.map((t) => <li>{t}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .lista-no {
+    opacity: 0.75;
+  }
+</style>

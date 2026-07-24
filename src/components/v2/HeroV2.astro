@@ -1,0 +1,166 @@
+---
+import { WA_LINK } from './config';
+---
+<section class="hero">
+  <div class="hero-rule" aria-hidden="true"></div>
+
+  <div class="container hero-inner">
+    <p class="hero-eyebrow linea-1">
+      Marketing para abogados · Solo trabajamos con abogados
+    </p>
+
+    <h1 class="h-display hero-titulo">
+      <span class="linea-2">El que busca abogado le escribe</span>
+      <span class="linea-3"><em>al primero que le responde.</em></span>
+    </h1>
+
+    <p class="lead hero-bajada linea-4">
+      Somos el área comercial del estudio: conseguimos, entrevistamos y calificamos
+      a tus posibles clientes, y te agendamos las reuniones. Vos solo atendés
+      casos calificados y agendados.
+    </p>
+
+    <div class="hero-ctas linea-5">
+      <a href="#agendar" class="btn-bronze">
+        Agendá una reunión de 15 minutos
+      </a>
+      <a href={WA_LINK} data-loc="hero" target="_blank" rel="noopener noreferrer" class="btn-outline">
+        Escribinos por WhatsApp
+      </a>
+    </div>
+    <p class="hero-micro linea-5">
+      Reunión de 15 minutos, sin compromiso.
+    </p>
+
+    <!-- Reloj en vivo: la página sabe qué hora es para el visitante -->
+    <div class="hero-clock linea-6">
+      <div class="hero-clock-dot" aria-hidden="true"></div>
+      <p class="hero-clock-texto">
+        <span id="clock-line">Son las <em id="clock-time">00:00</em> de un <span id="clock-day">…</span>.</span><br />
+        <span id="clock-msg">Si ahora alguien busca abogado y escribe a tu estudio, ¿recibe respuesta?</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding: 130px 32px 70px;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .hero-rule {
+    position: absolute;
+    top: 0;
+    right: max(32px, calc((100% - 1140px) / 2));
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, var(--line) 25%, var(--line) 75%, transparent);
+    pointer-events: none;
+  }
+  .hero-inner {
+    width: 100%;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    margin: 0 0 24px;
+  }
+  .hero-titulo {
+    font-size: clamp(2.1rem, 5vw, 3.8rem);
+    max-width: 1000px;
+  }
+  .hero-titulo span {
+    display: block;
+  }
+  .hero-bajada {
+    font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+    line-height: 1.8;
+    max-width: 560px;
+    margin: 26px 0 0;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-micro {
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    font-weight: 400;
+    color: var(--cream-40);
+    margin: 14px 0 0;
+  }
+
+  .hero-clock {
+    margin-top: 56px;
+  }
+  .hero-clock-texto {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 300;
+    color: var(--cream-60);
+    line-height: 1.75;
+    margin: 0;
+  }
+  .hero-clock-texto em {
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--bronze-light);
+  }
+
+  /* Entrada escalonada de las líneas del hero */
+  .linea-1 { animation: hero-line-in 0.7s ease-out 0.05s both; }
+  .linea-2 { animation: hero-line-in 0.55s ease-out both; }
+  .linea-3 { animation: hero-line-in 0.55s ease-out 0.12s both; }
+  .linea-4 { animation: hero-line-in 0.7s ease-out 0.46s both; }
+  .linea-5 { animation: hero-line-in 0.7s ease-out 0.58s both; }
+  .linea-6 { animation: hero-line-in 0.7s ease-out 0.74s both; }
+
+  @media (max-width: 900px) {
+    .hero {
+      padding: 104px 22px 70px;
+    }
+    .hero-rule {
+      display: none;
+    }
+    .hero-ctas {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+</style>
+
+<script>
+  const timeEl = document.getElementById('clock-time');
+  const dayEl = document.getElementById('clock-day');
+  const msgEl = document.getElementById('clock-msg');
+  const DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+
+  function tick() {
+    const d = new Date();
+    if (timeEl) timeEl.textContent = d.getHours() + ':' + String(d.getMinutes()).padStart(2, '0');
+    if (dayEl) dayEl.textContent = DIAS[d.getDay()];
+    if (msgEl) {
+      const finde = d.getDay() === 0 || d.getDay() === 6;
+      const fueraDeHorario = finde || d.getHours() < 9 || d.getHours() >= 19;
+      msgEl.textContent = fueraDeHorario
+        ? 'A esta hora, la mayoría de los estudios no responde. Con atención 24/7, el tuyo sí: la consulta no se enfría.'
+        : 'Ahora es fácil responder. El diferencial aparece esta noche, cuando sigan buscando y nadie atienda.';
+    }
+  }
+  tick();
+  setInterval(tick, 15000);
+</script>

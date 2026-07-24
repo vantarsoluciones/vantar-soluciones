@@ -1,0 +1,75 @@
+---
+import LayoutV2 from '../layouts/LayoutV2.astro';
+import Logo from '../components/Logo.astro';
+---
+<LayoutV2
+  title="Página no encontrada | VantAr"
+  description="La página que buscás no existe o cambió de lugar."
+  noindex={true}
+>
+  <main class="nf">
+    <div class="nf-inner">
+      <a href="/" class="nf-logo" aria-label="VantAr, inicio">
+        <Logo size={34} />
+      </a>
+      <p class="nf-codigo" aria-hidden="true">404</p>
+      <h1 class="h-display nf-titulo">
+        Esta página <em>no atiende acá.</em>
+      </h1>
+      <p class="nf-texto">
+        La dirección que buscás no existe o cambió de lugar. Lo que sí sigue
+        atendiendo, a toda hora, es lo nuestro.
+      </p>
+      <nav class="nf-acciones" aria-label="Salidas">
+        <a href="/" class="btn-bronze">Ir al inicio</a>
+        <a href="/abogados" class="btn-outline">Marketing para abogados</a>
+      </nav>
+    </div>
+  </main>
+</LayoutV2>
+
+<style>
+  .nf {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 22px;
+  }
+  .nf-inner {
+    max-width: 560px;
+    text-align: center;
+  }
+  .nf-logo {
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 40px;
+  }
+  .nf-codigo {
+    font-family: var(--font-display);
+
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: var(--bronze);
+    letter-spacing: 0.3em;
+    margin: 0 0 14px;
+  }
+  .nf-titulo {
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
+  }
+  .nf-texto {
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    font-weight: 300;
+    color: var(--cream-60);
+    line-height: 1.85;
+    margin: 24px 0 0;
+  }
+  .nf-acciones {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    margin-top: 34px;
+    flex-wrap: wrap;
+  }
+</style>

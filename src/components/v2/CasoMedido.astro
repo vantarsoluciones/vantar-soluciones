@@ -1,0 +1,122 @@
+---
+// Embudo real de la primera campaña medida (estudio de CABA). Los valores se
+// redondean siempre HACIA ABAJO (medición real: 271/27/16/10 en 11 días) para
+// que cada cifra publicada sea estrictamente cierta y defendible en la reunión.
+const EMBUDO = [
+  { valor: '+270', etiqueta: 'clicks en los anuncios' },
+  { valor: '+25',  etiqueta: 'conversaciones por WhatsApp' },
+  { valor: '+15',  etiqueta: 'casos calificados' },
+  { valor: '10',   etiqueta: 'reuniones agendadas' },
+];
+---
+<section class="section section-alt" aria-labelledby="medido-titulo">
+  <div class="container">
+    <div class="label-sec reveal">Medido, no prometido</div>
+
+    <h2 id="medido-titulo" class="h-display reveal d1 medido-titulo">
+      Dos semanas de campaña,<br /><em>un estudio de CABA.</em>
+    </h2>
+
+    <ol class="embudo reveal d2">
+      {EMBUDO.map((paso, i) => (
+        <li class="embudo-paso">
+          {i > 0 && <span class="embudo-flecha" aria-hidden="true">→</span>}
+          <div class="embudo-dato">
+            <span class="embudo-valor">{paso.valor}</span>
+            <span class="embudo-etiqueta">{paso.etiqueta}</span>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <p class="medido-nota reveal d3">
+      Campaña real de un estudio de daños y accidentes, medida paso a paso en su
+      portal. "Caso calificado" quiere decir consulta entrevistada y priorizada
+      por el asistente; convertirla en cliente ya es mérito del estudio. Por eso
+      no prometemos números: <strong>los medimos, y vos los ves.</strong>
+    </p>
+  </div>
+</section>
+
+<style>
+  .medido-titulo {
+    font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+    margin-top: 44px;
+    max-width: 640px;
+  }
+
+  .embudo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 22px 26px;
+    margin: 56px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .embudo-paso {
+    display: flex;
+    align-items: baseline;
+    gap: 26px;
+  }
+  .embudo-flecha {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 1.4rem;
+    color: var(--bronze);
+  }
+  .embudo-dato {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .embudo-valor {
+    font-family: var(--font-display);
+    font-weight: 550;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    line-height: 1;
+    color: var(--bronze-light);
+    letter-spacing: -0.02em;
+  }
+  .embudo-etiqueta {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cream-40);
+    max-width: 150px;
+    line-height: 1.5;
+  }
+
+  .medido-nota {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--cream-60);
+    line-height: 1.85;
+    max-width: 620px;
+    margin: 56px 0 0;
+    border-left: 1px solid var(--line-strong);
+    padding-left: 18px;
+  }
+  .medido-nota strong {
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  @media (max-width: 700px) {
+    .embudo {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+    }
+    .embudo-paso {
+      align-items: center;
+    }
+    .embudo-flecha {
+      transform: rotate(90deg);
+      display: inline-block;
+    }
+  }
+</style>

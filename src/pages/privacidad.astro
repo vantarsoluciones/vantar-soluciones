@@ -1,0 +1,151 @@
+---
+import LayoutV2 from '../layouts/LayoutV2.astro';
+import Logo from '../components/Logo.astro';
+---
+<LayoutV2
+  title="Política de privacidad | VantAr"
+  description="Qué datos recoge VantAr Soluciones, para qué se usan y qué derechos tenés sobre ellos."
+>
+  <main class="priv">
+    <div class="priv-inner">
+      <a href="/abogados" class="priv-logo" aria-label="VantAr">
+        <Logo size={30} />
+      </a>
+
+      <h1 class="h-display priv-titulo">Política de privacidad</h1>
+      <p class="priv-fecha">Última actualización: julio de 2026</p>
+
+      <h2>Quiénes somos</h2>
+      <p>
+        VantAr Soluciones es una agencia de marketing especializada en estudios
+        jurídicos y abogados, fundada por Franco Leibrecht y Gonzalo Maluccio,
+        con base en Buenos Aires, Argentina. Somos los responsables del
+        tratamiento de los datos que se describen en esta política. Podés
+        contactarnos en
+        <a href="mailto:vantarsoluciones@gmail.com">vantarsoluciones@gmail.com</a>.
+      </p>
+
+      <h2>Qué datos recogemos</h2>
+      <p>
+        Recogemos únicamente los datos que vos nos das y los necesarios para
+        medir el funcionamiento del sitio:
+      </p>
+      <ul>
+        <li><strong>Datos de contacto:</strong> si nos escribís por WhatsApp, correo o agendás una reunión, recibimos tu nombre, tu teléfono o correo y el contenido de tu mensaje.</li>
+        <li><strong>Datos de navegación:</strong> usamos herramientas de medición (como Google Tag Manager y Google Ads) que registran de forma agregada cómo se usa el sitio y desde qué anuncio llegaste. Pueden usar cookies para eso.</li>
+      </ul>
+
+      <h2>Para qué los usamos</h2>
+      <p>
+        Para responderte, coordinar la reunión que pediste y entender qué partes
+        del sitio y de nuestros anuncios funcionan mejor. No vendemos ni cedemos
+        tus datos a terceros, y no te sumamos a listas de correo sin tu
+        consentimiento.
+      </p>
+
+      <h2>Cuánto tiempo los guardamos</h2>
+      <p>
+        Conservamos los datos de contacto mientras dure la conversación comercial
+        o la relación de servicio, y los datos de medición según los plazos de
+        las herramientas de Google.
+      </p>
+
+      <h2>Tus derechos</h2>
+      <p>
+        De acuerdo con la Ley 25.326 de Protección de los Datos Personales,
+        podés pedirnos acceso, rectificación o supresión de tus datos en
+        cualquier momento escribiendo a
+        <a href="mailto:vantarsoluciones@gmail.com">vantarsoluciones@gmail.com</a>.
+        La Agencia de Acceso a la Información Pública, en su carácter de órgano
+        de control de la Ley 25.326, tiene la atribución de atender las denuncias
+        y reclamos que se interpongan con relación al incumplimiento de las
+        normas sobre protección de datos personales.
+      </p>
+
+      <h2>Cookies</h2>
+      <p>
+        El sitio usa cookies de medición de Google (Tag Manager, Ads). Podés
+        bloquearlas o borrarlas desde la configuración de tu navegador; el sitio
+        sigue funcionando igual.
+      </p>
+
+      <h2>Servicios de terceros</h2>
+      <p>
+        Si nos escribís por WhatsApp, la conversación viaja por la plataforma de
+        WhatsApp y queda alcanzada también por su propia política de privacidad.
+        El sitio está alojado en Cloudflare, que puede registrar datos técnicos
+        (como la dirección IP) por motivos de seguridad y rendimiento. No
+        incorporamos otros servicios que recojan datos personales.
+      </p>
+
+      <div class="priv-volver">
+        <a href="/abogados" class="nav-anchor">← Volver a la página</a>
+      </div>
+    </div>
+  </main>
+</LayoutV2>
+
+<style>
+  .priv {
+    padding: 60px 22px 90px;
+  }
+  .priv-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .priv-logo {
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 48px;
+  }
+  .priv-titulo {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+  }
+  .priv-fecha {
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: var(--cream-40);
+    font-size: 0.85rem;
+    margin: 14px 0 0;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--cream);
+    margin: 44px 0 14px;
+    letter-spacing: -0.01em;
+  }
+  p,
+  ul {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--cream-60);
+    line-height: 1.85;
+    margin: 0 0 14px;
+  }
+  ul {
+    padding-left: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  strong {
+    color: var(--cream);
+    font-weight: 500;
+  }
+  a {
+    color: var(--bronze-light);
+  }
+
+  .priv-volver {
+    margin-top: 64px;
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+  }
+  .priv-volver a {
+    font-size: 13px;
+  }
+</style>
