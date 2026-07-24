@@ -8,7 +8,7 @@ const METRICS = [
 ---
 <section id="resultados" class="section section-alt" style="border-top:1px solid var(--line);">
   <div class="container">
-    <div class="label-sec reveal">Resultados</div>
+    <h2 class="label-sec reveal">Resultados</h2>
 
     <div style="display:flex;gap:56px;margin-top:56px;align-items:center;flex-wrap:wrap;" class="results-row">
       {METRICS.map((m, i) => (
@@ -16,7 +16,7 @@ const METRICS = [
           {i > 0 && <div style="width:1px;height:88px;background:var(--line);" class="results-divider"></div>}
           <div class={`reveal d${i + 1}`} style="flex:1;min-width:200px;">
             <div style="font-family:var(--font-display);font-size:clamp(3.2rem,6vw,4.6rem);font-weight:600;color:var(--bronze-light);line-height:1;">
-              {m.prefix}<span data-count={m.value}>0</span>{m.suffix}
+              {m.prefix}<span data-count={m.value}>{m.value}</span>{m.suffix}
             </div>
             <div style="font-family:var(--font-body);font-size:11px;color:var(--cream-40);letter-spacing:0.1em;text-transform:uppercase;margin-top:14px;max-width:240px;line-height:1.6;">{m.label}</div>
           </div>
@@ -25,19 +25,23 @@ const METRICS = [
 
       <div style="width:1px;height:88px;background:var(--line);" class="results-divider"></div>
 
-      <!-- PROVISORIO: reemplazar con testimonio real cuando haya datos/permiso del cliente -->
-      <blockquote class="reveal d3" style="flex:1.4;min-width:260px;margin:0;">
-        <p style="font-family:var(--font-display);font-weight:400;font-size:clamp(1.05rem,1.8vw,1.25rem);letter-spacing:-0.01em;color:rgba(239,234,224,0.85);line-height:1.6;margin:0;">
-          "Con un solo caso cerrado, el sistema ya se pagó el mes.
-          Todo lo demás es ganancia."
+      <div class="reveal d3" style="flex:1.4;min-width:260px;">
+        <p style="font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--bronze);margin:0 0 14px;">
+          La inversión, en perspectiva
         </p>
-      </blockquote>
+        <p style="font-family:var(--font-display);font-weight:400;font-size:clamp(1.05rem,1.8vw,1.25rem);letter-spacing:-0.01em;color:rgba(239,234,224,0.85);line-height:1.6;margin:0;">
+          Un solo caso cerrado <span style="color:var(--cream);font-weight:600;">cubre el mes del sistema</span>.
+          Todo lo que sigue es crecimiento para tu estudio.
+        </p>
+      </div>
     </div>
   </div>
 </section>
 
 <script>
-  // count-up de métricas: una sola vez, al entrar al viewport
+  // count-up de métricas: una sola vez, al entrar al viewport.
+  // El HTML trae el valor FINAL (para SEO y sin-JS); el JS lo pone en 0 recién
+  // al arrancar la animación, así Google nunca lee "+0".
   const els = document.querySelectorAll('[data-count]');
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) {

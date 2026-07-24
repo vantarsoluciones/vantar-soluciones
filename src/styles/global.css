@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 
 :root {
   --bg:            #080F1E;
@@ -47,6 +47,7 @@ body {
   display: flex;
   align-items: center;
   gap: 16px;
+  margin: 0;
 }
 .label-sec::after {
   content: '';
@@ -64,8 +65,21 @@ body {
   line-height: 1.1;
   margin: 0;
 }
-/* Outfit es geométrica (sin itálica real): el acento se marca con color, no con itálica */
-.h-display em { font-style: normal; color: var(--bronze-light); font-weight: 600; }
+/* Outfit es geométrica (sin itálica real). Énfasis en headings: mismo color y
+   subrayado filete; el bronce queda reservado para el h1 (regla anti-look-IA). */
+.h-display em {
+  font-style: normal;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--bronze);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 7px;
+}
+h1.h-display em {
+  color: var(--bronze-light);
+  text-decoration: none;
+}
 
 /* ── Botones (rectangulares, radius 2px) ── */
 .btn-bronze {

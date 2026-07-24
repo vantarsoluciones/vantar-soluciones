@@ -1,29 +1,121 @@
 ---
 import '../styles/global.css';
+import { GTM_ID, WA_NUMBER } from '../components/v2/config';
+
 interface Props {
   title?: string;
   description?: string;
 }
 const {
-  title = 'VantAr | Asistente Virtual Inteligente para estudios jurídicos',
-  description = 'Tu estudio, disponible 24/7 en WhatsApp. Un asistente con IA que atiende, entrevista, califica y agenda clientes solo, más publicidad que llena tu agenda de casos.',
+  title = 'VantAr | El área comercial de tu estudio, marketing y atención 24/7',
+  description = 'Conseguimos, entrevistamos y calificamos a tus posibles clientes, y te agendamos las reuniones. Publicidad, asistente inteligente 24/7 y agenda llena. Especialistas en estudios jurídicos; también consultorios y servicios profesionales.',
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/og.png', Astro.site).href;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'VantAr Soluciones',
+  description:
+    'El área comercial de estudios y consultorios profesionales: publicidad, asistente inteligente 24/7 y reuniones agendadas con casos calificados.',
+  url: Astro.site?.href,
+  email: 'vantarsoluciones@gmail.com',
+  telephone: `+${WA_NUMBER}`,
+  image: ogImage,
+  areaServed: ['Ciudad Autónoma de Buenos Aires', 'AMBA', 'Argentina'],
+  founder: [
+    { '@type': 'Person', name: 'Franco Leibrecht' },
+    { '@type': 'Person', name: 'Gonzalo Maluccio' },
+  ],
+};
 ---
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content="Atiende. Entrevista. Califica. Agenda. Te avisa. Mientras dormís, tu estudio sigue captando clientes." />
+    <link rel="canonical" href={canonical} />
+
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="VantAr" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#080F1E" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap"
+    />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+    <!-- dataLayer siempre disponible; GTM solo si hay ID configurado -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+    </script>
+    {GTM_ID && (
+      <script is:inline define:vars={{ GTM_ID }}>
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', GTM_ID);
+      </script>
+    )}
   </head>
   <body>
+    {GTM_ID && (
+      <noscript>
+        <iframe
+          src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+          height="0"
+          width="0"
+          style="display:none;visibility:hidden"></iframe>
+      </noscript>
+    )}
     <slot />
+
+    <!-- Evento click_whatsapp en cualquier botón de WhatsApp (el origen se
+         distingue por page path en GTM; el mensaje precargado es propio de
+         la home, distinto al de la campaña) -->
+    <script is:inline>
+      document.addEventListener('click', function (e) {
+        var a = e.target && e.target.closest ? e.target.closest('a[href*="wa.me"]') : null;
+        if (a) {
+          window.dataLayer.push({
+            event: 'click_whatsapp',
+            cta_location: a.getAttribute('data-loc') || 'sin-ubicacion',
+          });
+        }
+      });
+    </script>
+
+    <!-- Reveals por viewport -->
     <script>
       const io = new IntersectionObserver(
         (entries) => {

@@ -1,0 +1,65 @@
+---
+// Puente hacia la vertical jurídica: la home es general (servicios
+// profesionales); /abogados es la página específica de la campaña.
+// El link es unidireccional — /abogados no linkea de vuelta a la home.
+---
+<aside class="banda" aria-label="Página para estudios jurídicos">
+  <div class="banda-inner container">
+    <p class="banda-texto">
+      <em>¿Tenés un estudio jurídico?</em>
+      <span>Armamos una página dedicada, con el circuito completo para abogados.</span>
+    </p>
+    <a href="/abogados" class="btn-outline">Marketing para abogados →</a>
+  </div>
+</aside>
+
+<style>
+  .banda {
+    background: var(--bg-alt);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 26px 32px;
+  }
+  .banda-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .banda-texto {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 0;
+  }
+  .banda-texto em {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--cream);
+  }
+  .banda-texto span {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--cream-60);
+  }
+
+  @media (max-width: 700px) {
+    .banda {
+      padding: 24px 22px;
+    }
+    .banda-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .banda :global(.btn-outline) {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

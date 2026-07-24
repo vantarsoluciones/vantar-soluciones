@@ -1,0 +1,114 @@
+---
+// Variante B de la sección de equipo: banda austera de nombres, centrada,
+// sin placas — los nombres grandes son la evidencia.
+const PERSONAS = [
+  { nombre: 'Franco Leibrecht', cargo: 'Cofundador' },
+  { nombre: 'Gonzalo Maluccio', cargo: 'Cofundador' },
+];
+---
+<section id="equipo" class="section">
+  <div class="container equipo-inner">
+    <div class="label-sec reveal equipo-label">Quiénes somos</div>
+
+    <h2 class="h-display reveal d1 equipo-titulo">
+      Dos personas <em>atrás del sistema.</em>
+    </h2>
+
+    <div class="equipo-nombres reveal d2">
+      {PERSONAS.map((p, i) => (
+        <>
+          {i > 0 && <div class="equipo-divisor" aria-hidden="true"></div>}
+          <div class="equipo-persona">
+            <span class="equipo-nombre">{p.nombre}</span>
+            <span class="equipo-cargo">{p.cargo}</span>
+          </div>
+        </>
+      ))}
+    </div>
+
+    <p class="reveal d3 equipo-manifiesto">
+      Licenciados en Administración y Comercialización. Armamos el área comercial
+      que a los estudios y consultorios les falta, y damos la cara.
+      <span>Vos resolvés en tu campo, nosotros en el nuestro.</span>
+    </p>
+  </div>
+</section>
+
+<style>
+  .equipo-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .equipo-label {
+    align-self: stretch;
+  }
+  .equipo-titulo {
+    font-size: clamp(1.9rem, 3.4vw, 2.8rem);
+    margin-top: 44px;
+  }
+
+  .equipo-nombres {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    margin-top: 56px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .equipo-divisor {
+    width: 1px;
+    height: 64px;
+    background: var(--line-strong);
+  }
+  .equipo-persona {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .equipo-nombre {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    color: var(--cream);
+    letter-spacing: -0.01em;
+  }
+  .equipo-cargo {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--bronze);
+  }
+
+  .equipo-manifiesto {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--cream-60);
+    line-height: 1.85;
+    max-width: 520px;
+    margin: 48px 0 0;
+  }
+  .equipo-manifiesto span {
+    display: block;
+    margin-top: 14px;
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--bronze-light);
+    font-size: 1.05rem;
+  }
+
+  @media (max-width: 700px) {
+    .equipo-nombres {
+      flex-direction: column;
+      gap: 28px;
+    }
+    .equipo-divisor {
+      width: 64px;
+      height: 1px;
+    }
+  }
+</style>
