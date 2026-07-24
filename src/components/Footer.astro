@@ -1,5 +1,8 @@
 ---
 import Logo from './Logo.astro';
+import { WA_NUMBER_VISIBLE } from './v2/config';
+// Mensaje precargado PROPIO de la home (distinto al de la campaña /abogados:
+// el texto distingue de dónde vino cada conversación).
 const WA_LINK = 'https://wa.me/5491135701607?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20VantAr';
 const year = new Date().getFullYear();
 const LINKS = [
@@ -10,33 +13,129 @@ const LINKS = [
   { href: '#faq',         label: 'FAQ' },
 ];
 ---
-<footer style="background:var(--bg-alt);padding:64px 32px 40px;border-top:1px solid var(--line);">
+<footer class="pie">
   <div class="container">
-    <div style="display:flex;flex-wrap:wrap;gap:48px;justify-content:space-between;align-items:flex-start;margin-bottom:52px;">
-      <div style="max-width:300px;">
-        <a href="#" style="text-decoration:none;display:inline-block;margin-bottom:18px;">
+    <div class="pie-cols">
+      <div class="pie-marca">
+        <a href="#" class="pie-logo" aria-label="VantAr, inicio">
           <Logo size={28} />
         </a>
-        <p style="font-family:var(--font-body);font-size:0.85rem;font-weight:300;color:var(--cream-60);line-height:1.75;margin:0;">
-          Automatización e inteligencia artificial para estudios jurídicos y abogados.
+        <p class="pie-bajada">
+          El área comercial de estudios y consultorios: publicidad, atención
+          inteligente 24/7 y reuniones agendadas.
         </p>
       </div>
 
-      <nav style="display:flex;flex-direction:column;gap:14px;">
+      <nav class="pie-nav" aria-label="Secciones">
         {LINKS.map(l => (
-          <a href={l.href} class="nav-anchor" style="font-size:13px;">{l.label}</a>
+          <a href={l.href} class="nav-anchor pie-link">{l.label}</a>
         ))}
       </nav>
 
-      <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start;">
-        <a href="mailto:vantarsoluciones@gmail.com" class="nav-anchor" style="font-size:13px;">vantarsoluciones@gmail.com</a>
-        <a href={WA_LINK} target="_blank" rel="noopener noreferrer" class="btn-outline">Escribinos</a>
-      </div>
+      <address class="pie-contacto">
+        <a href="mailto:vantarsoluciones@gmail.com" class="nav-anchor pie-link">vantarsoluciones@gmail.com</a>
+        <span class="pie-tel">{WA_NUMBER_VISIBLE}</span>
+        <span class="pie-lugar">Buenos Aires, Argentina</span>
+        <a href={WA_LINK} data-loc="footer" target="_blank" rel="noopener noreferrer" class="btn-outline">Escribinos por WhatsApp</a>
+      </address>
     </div>
 
-    <div style="border-top:1px solid rgba(239,234,224,0.07);padding-top:28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;">
-      <span style="font-family:var(--font-body);font-size:12px;color:var(--cream-60);">© {year} VantAr Soluciones. Todos los derechos reservados.</span>
-      <span style="font-family:var(--font-display);font-weight:500;font-size:12px;letter-spacing:0.03em;color:var(--bronze-light);">Inteligencia artificial para estudios jurídicos</span>
+    <div class="pie-legal">
+      <span class="pie-copy">© {year} VantAr Soluciones. Todos los derechos reservados.</span>
+      <span class="pie-legal-der">
+        <a href="/privacidad" class="nav-anchor pie-link-chico">Política de privacidad</a>
+        <span class="pie-tag">El área comercial de tu estudio</span>
+      </span>
     </div>
   </div>
 </footer>
+
+<style>
+  .pie {
+    background: var(--bg-alt);
+    padding: 64px 32px 40px;
+    border-top: 1px solid var(--line);
+  }
+  .pie-cols {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 52px;
+  }
+
+  .pie-marca {
+    max-width: 300px;
+  }
+  .pie-logo {
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 18px;
+  }
+  .pie-bajada {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--cream-60);
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  .pie-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .pie-link {
+    font-size: 13px;
+  }
+
+  .pie-contacto {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+    font-style: normal;
+  }
+  .pie-tel {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--cream-60);
+  }
+  .pie-lugar {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--cream-60);
+  }
+
+  .pie-legal {
+    border-top: 1px solid rgba(239, 234, 224, 0.07);
+    padding-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .pie-copy {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--cream-60);
+  }
+  .pie-legal-der {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+  }
+  .pie-link-chico {
+    font-size: 12px;
+  }
+  .pie-tag {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    color: var(--bronze-light);
+  }
+</style>
